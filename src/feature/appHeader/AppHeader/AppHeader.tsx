@@ -95,6 +95,14 @@ const AppHeader = () => {
   const handleToggleAccountButton = (e: any) => {
     setState((p) => ({ ...p, accountMenu: { open: !p.accountMenu.open, anchorElement: e.currentTarget }, appMenu: { open: false, anchorElement: e.currentTarget }, helpMenu: { open: false, anchorElement: e.currentTarget } }));
   };
+  const handleSideItemClick = (e: any, itemName: string)=> {
+    console.log(itemName);
+    if (itemName === 'member-search-item' && state.sidebar.selectedItem === 'member-search-item') {
+      setState((p)=> ({...p, sidebar: {selectedItem: '', anchorElement: e.currentTarget}}));
+    } else if (itemName === 'member-search-item' && state.sidebar.selectedItem !== 'member-search-item'){
+      setState((p)=> ({...p, sidebar: {selectedItem: itemName, anchorElement: e.currentTarget}}));
+    }
+  };
 
 
   return (
@@ -155,7 +163,6 @@ const AppHeader = () => {
                         <PlaylistAddCheckOutlinedIcon color="secondary" />
                       </ListItemIcon>
                       <ListItemText primary="Instructions" />
-
                     </ListItem>
 
                     <ListItem button  className={classes.menuItem}>
@@ -288,14 +295,14 @@ const AppHeader = () => {
             component="nav"
             className={classes.rootList}
           >
-            <ListItem button  className={classes.menuItem}>
-              <ListItemIcon>
+            <ListItem button  className={classes.menuItem} onClick={(e)=> handleSideItemClick(e, "member-search-item")}>
+              <ListItemIcon >
                 <PermContactCalendarOutlinedIcon color="secondary" />
               </ListItemIcon>
               <ListItemText primary="Member Search" />
 
             </ListItem>
-            <Collapse in={state.sidebar.selectedItem === "member-search"} timeout="auto" unmountOnExit>
+            <Collapse in={state.sidebar.selectedItem === 'member-search-item'} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <ListItem button className={classes.nested + ' ' + classes.menuItem}>
                   <ListItemIcon>
