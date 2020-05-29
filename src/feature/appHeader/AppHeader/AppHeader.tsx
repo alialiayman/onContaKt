@@ -84,11 +84,9 @@ const AppHeader = () => {
   const classes = useStyles();
   const [state, setState] = useState({ drawerOpen: false, sidebar: { selectedItem: '', anchorElement: null }, helpMenu: { open: false, anchorElement: null }, appMenu: { open: false, anchorElement: null }, accountMenu: { open: false, anchorElement: null } });
 
-
   const handleMenuClose = (e: any) => {
     setState((p) => ({ ...p, helpMenu: { open: false, anchorElement: e.currentTarget }, appMenu: { open: false, anchorElement: e.currentTarget }, accountMenu: { open: false, anchorElement: e.currentTarget }, }));
   };
-
 
   const handleToggleHelpButton = (e: any) => {
     setState((p) => ({ ...p, helpMenu: { open: !p.helpMenu.open, anchorElement: e.currentTarget }, appMenu: { open: false, anchorElement: e.currentTarget }, accountMenu: { open: false, anchorElement: e.currentTarget } }));
@@ -100,24 +98,22 @@ const AppHeader = () => {
   const handleToggleAccountButton = (e: any) => {
     setState((p) => ({ ...p, accountMenu: { open: !p.accountMenu.open, anchorElement: e.currentTarget }, appMenu: { open: false, anchorElement: e.currentTarget }, helpMenu: { open: false, anchorElement: e.currentTarget } }));
   };
-  const handleSideItemClick = (e: any, itemName: string) => {
-    console.log(itemName);
-    if (itemName === 'member-search-item' && state.sidebar.selectedItem === 'member-search-item') {
+
+  const handleSidebarItemClick = (e: any, sidebarItemName: string) => {
+    console.log(sidebarItemName);
+    if (sidebarItemName === 'member-search-item' && state.sidebar.selectedItem === 'member-search-item') {
       setState((p) => ({ ...p, sidebar: { selectedItem: '', anchorElement: e.currentTarget } }));
-    } else if (itemName === 'member-search-item' && state.sidebar.selectedItem !== 'member-search-item') {
-      setState((p) => ({ ...p, sidebar: { selectedItem: itemName, anchorElement: e.currentTarget } }));
+    } else if (sidebarItemName === 'member-search-item' && state.sidebar.selectedItem !== 'member-search-item') {
+      setState((p) => ({ ...p, sidebar: { selectedItem: sidebarItemName, anchorElement: e.currentTarget } }));
     }
   };
 
-
   return (
     <React.Fragment>
-
       <AppBar position="fixed" color="inherit" elevation={0} className={classes.appBar}>
         <Toolbar >
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
-
               <Grid container justify="flex-start" alignItems="center" >
                 <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
                   <MenuIcon />
@@ -127,28 +123,22 @@ const AppHeader = () => {
             </Grid>
 
             <Grid item justify="flex-end">
-
               <IconButton color="inherit" aria-label="menu">
                 <LibraryBooksOutlinedIcon />
               </IconButton>
-
               <IconButton color="inherit" aria-label="menu">
                 <HelpOutlineOutlinedIcon onClick={(e) => handleToggleHelpButton(e)} />
               </IconButton>
-
               <IconButton color="inherit" aria-label="menu">
                 <AppsOutlinedIcon onClick={(e) => handleToggleAppButton(e)} />
               </IconButton>
-
               <IconButton color="inherit" aria-label="menu">
                 <AccountCircleOutlinedIcon onClick={(e) => handleToggleAccountButton(e)} />
               </IconButton>
             </Grid>
           </Grid>
         </Toolbar>
-        <div className={classes.bottomBorder}>
-
-        </div>
+        <div className={classes.bottomBorder} />
       </AppBar>
 
       <Popper open={state.helpMenu.open} anchorEl={state.helpMenu.anchorElement} role={undefined} transition disablePortal style={{ width: '250px', marginLeft: '-200px' }}>
@@ -304,7 +294,7 @@ const AppHeader = () => {
             component="nav"
             className={classes.rootList}
           >
-            <ListItem button className={classes.menuItem} onClick={(e) => handleSideItemClick(e, "member-search-item")}>
+            <ListItem button className={classes.menuItem} onClick={(e) => handleSidebarItemClick(e, "member-search-item")}>
               <ListItemIcon >
                 <PermContactCalendarOutlinedIcon color="secondary" />
               </ListItemIcon>
