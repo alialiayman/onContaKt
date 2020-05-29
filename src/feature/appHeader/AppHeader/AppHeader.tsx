@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AppBar, Toolbar, IconButton, Typography, Grid, Drawer, Theme, Collapse, List, ListItem, ListItemText, ListItemIcon, Popper, Grow, ClickAwayListener, Divider, Card } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/styles';
-import headerOptum from './headerOptum.png';
+import optumLogo from './optum-logo-105x30.png';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import AppsOutlinedIcon from '@material-ui/icons/AppsOutlined';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
@@ -53,8 +53,13 @@ const useStyles = makeStyles((theme: Theme) => ({
       backgroundColor: '#f5f5f5',
       color: '#222222',
     },
-
-
+  },
+  submenuItem: {
+    color: '#636363',
+    '&:hover': {
+      backgroundColor: '#f5f5f5',
+      color: '#222222',
+    },
   },
   root: {
     height: 180,
@@ -90,17 +95,17 @@ const AppHeader = () => {
   };
 
   const handleToggleAppButton = (e: any) => {
-    setState((p) => ({ ...p, appMenu: { open: !p.appMenu.open, anchorElement: e.currentTarget },  helpMenu: { open: false, anchorElement: e.currentTarget }, accountMenu: { open: false, anchorElement: e.currentTarget } }));
+    setState((p) => ({ ...p, appMenu: { open: !p.appMenu.open, anchorElement: e.currentTarget }, helpMenu: { open: false, anchorElement: e.currentTarget }, accountMenu: { open: false, anchorElement: e.currentTarget } }));
   };
   const handleToggleAccountButton = (e: any) => {
     setState((p) => ({ ...p, accountMenu: { open: !p.accountMenu.open, anchorElement: e.currentTarget }, appMenu: { open: false, anchorElement: e.currentTarget }, helpMenu: { open: false, anchorElement: e.currentTarget } }));
   };
-  const handleSideItemClick = (e: any, itemName: string)=> {
+  const handleSideItemClick = (e: any, itemName: string) => {
     console.log(itemName);
     if (itemName === 'member-search-item' && state.sidebar.selectedItem === 'member-search-item') {
-      setState((p)=> ({...p, sidebar: {selectedItem: '', anchorElement: e.currentTarget}}));
-    } else if (itemName === 'member-search-item' && state.sidebar.selectedItem !== 'member-search-item'){
-      setState((p)=> ({...p, sidebar: {selectedItem: itemName, anchorElement: e.currentTarget}}));
+      setState((p) => ({ ...p, sidebar: { selectedItem: '', anchorElement: e.currentTarget } }));
+    } else if (itemName === 'member-search-item' && state.sidebar.selectedItem !== 'member-search-item') {
+      setState((p) => ({ ...p, sidebar: { selectedItem: itemName, anchorElement: e.currentTarget } }));
     }
   };
 
@@ -111,12 +116,16 @@ const AppHeader = () => {
       <AppBar position="fixed" color="inherit" elevation={0} className={classes.appBar}>
         <Toolbar >
           <Grid container justify="space-between" alignItems="center">
-            <Grid item justify="flex-start" alignItems="center" >
-              <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
-                <MenuIcon />
-              </IconButton>
-              <img src={headerOptum} alt="logo" />
+            <Grid item>
+
+              <Grid container justify="flex-start" alignItems="center" >
+                <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
+                  <MenuIcon />
+                </IconButton>
+                <img src={optumLogo} alt="logo" style={{ marginTop: '1px' }} />
+              </Grid>
             </Grid>
+
             <Grid item justify="flex-end">
 
               <IconButton color="inherit" aria-label="menu">
@@ -158,21 +167,21 @@ const AppHeader = () => {
                       Help
           </Typography>
                     <Divider />
-                    <ListItem button  className={classes.menuItem}>
+                    <ListItem button className={classes.menuItem}>
                       <ListItemIcon>
                         <PlaylistAddCheckOutlinedIcon color="secondary" />
                       </ListItemIcon>
                       <ListItemText primary="Instructions" />
                     </ListItem>
 
-                    <ListItem button  className={classes.menuItem}>
+                    <ListItem button className={classes.menuItem}>
                       <ListItemIcon>
                         <BookOutlinedIcon color="secondary" />
                       </ListItemIcon>
                       <ListItemText primary="Tutorial" />
 
                     </ListItem>
-                    <ListItem button  className={classes.menuItem}>
+                    <ListItem button className={classes.menuItem}>
                       <ListItemIcon>
                         <ArrowForwardOutlinedIcon color="secondary" />
                       </ListItemIcon>
@@ -204,7 +213,7 @@ const AppHeader = () => {
                       Optum Applications
           </Typography>
                     <Divider />
-                    <ListItem button  className={classes.menuItem}>
+                    <ListItem button className={classes.menuItem}>
                       <ListItemIcon>
                         <PlaylistAddCheckOutlinedIcon color="secondary" />
                       </ListItemIcon>
@@ -212,21 +221,21 @@ const AppHeader = () => {
 
                     </ListItem>
 
-                    <ListItem button  className={classes.menuItem}>
+                    <ListItem button className={classes.menuItem}>
                       <ListItemIcon>
                         <BookOutlinedIcon color="secondary" />
                       </ListItemIcon>
                       <ListItemText primary="Controled Substance" />
 
                     </ListItem>
-                    <ListItem button  className={classes.menuItem}>
+                    <ListItem button className={classes.menuItem}>
                       <ListItemIcon>
                         <ArrowForwardOutlinedIcon color="secondary" />
                       </ListItemIcon>
                       <ListItemText primary="Application Name" />
 
                     </ListItem>
-                    <ListItem button  className={classes.menuItem}>
+                    <ListItem button className={classes.menuItem}>
                       <ListItemIcon>
                         <ArrowForwardOutlinedIcon color="secondary" />
                       </ListItemIcon>
@@ -258,7 +267,7 @@ const AppHeader = () => {
                       James Johnson
           </Typography>
                     <Divider />
-                    <ListItem button  className={classes.menuItem}>
+                    <ListItem button className={classes.menuItem}>
                       <ListItemIcon>
                         <SettingsOutlinedIcon color="secondary" />
                       </ListItemIcon>
@@ -266,14 +275,14 @@ const AppHeader = () => {
 
                     </ListItem>
 
-                    <ListItem button  className={classes.menuItem}>
+                    <ListItem button className={classes.menuItem}>
                       <ListItemIcon>
                         <ArrowForwardOutlinedIcon color="secondary" />
                       </ListItemIcon>
                       <ListItemText primary="Sign out" />
 
                     </ListItem>
-                   </React.Fragment>
+                  </React.Fragment>
                 </List>
               </Card>
             </ClickAwayListener>
@@ -295,7 +304,7 @@ const AppHeader = () => {
             component="nav"
             className={classes.rootList}
           >
-            <ListItem button  className={classes.menuItem} onClick={(e)=> handleSideItemClick(e, "member-search-item")}>
+            <ListItem button className={classes.menuItem} onClick={(e) => handleSideItemClick(e, "member-search-item")}>
               <ListItemIcon >
                 <PermContactCalendarOutlinedIcon color="secondary" />
               </ListItemIcon>
@@ -304,20 +313,20 @@ const AppHeader = () => {
             </ListItem>
             <Collapse in={state.sidebar.selectedItem === 'member-search-item'} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                <ListItem button className={classes.nested + ' ' + classes.menuItem}>
+                <ListItem button className={classes.nested + ' ' + classes.submenuItem}>
                   <ListItemIcon>
                     <SearchOutlinedIcon color="secondary" />
                   </ListItemIcon>
                   <ListItemText primary="Basic" />
                 </ListItem>
 
-                <ListItem button className={classes.nested + ' ' + classes.menuItem}>
+                <ListItem button className={classes.nested + ' ' + classes.submenuItem}>
                   <ListItemIcon>
                     <FindReplaceOutlinedIcon color="secondary" />
                   </ListItemIcon>
                   <ListItemText primary="Advanced" />
                 </ListItem>
-                <ListItem button className={classes.nested + ' ' + classes.menuItem}>
+                <ListItem button className={classes.nested + ' ' + classes.submenuItem}>
                   <ListItemIcon>
                     <FindReplaceOutlinedIcon color="secondary" />
                   </ListItemIcon>
