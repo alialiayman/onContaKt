@@ -164,7 +164,7 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
                 <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
                   <MenuIcon />
                 </IconButton>
-                <img src={config.logo} alt="logo" />
+                <img src={config.logo} alt="logo" style={{height: '30px'}}/>
               </Grid>
             </Grid>
 

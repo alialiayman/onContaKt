@@ -1,16 +1,21 @@
 import React from 'react';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import AppsOutlinedIcon from '@material-ui/icons/AppsOutlined';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
-import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
+import FreeBreakfastOutlinedIcon from '@material-ui/icons/FreeBreakfastOutlined';
+import BrightnessAutoOutlinedIcon from '@material-ui/icons/BrightnessAutoOutlined';
 import PlaylistAddCheckOutlinedIcon from '@material-ui/icons/PlaylistAddCheckOutlined';
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import BookOutlinedIcon from '@material-ui/icons/BookOutlined';
+import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
+import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined';
+import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import TranslateOutlinedIcon from '@material-ui/icons/TranslateOutlined';
 import AppHeader from '../shared/components/appHeader/AppHeader/AppHeader';
 import { IHeaderConfig } from '../shared/components/appHeader/AppHeader/interfaces';
 
-import logo from './optum-logo-105x30.png';
+import logo from './logo-dark.png';
 
 
 
@@ -18,36 +23,34 @@ const config: IHeaderConfig = {
     logo,
     elevation: 0,
     sideMenu: {
-        title: 'IRIS Plus',
+        title: 'HajOnSoft',
         items: [
             {
-                name: 'accordion-item', title: 'Accordion Item', color: "secondary",
+                name: 'customers', title: 'Customers', color: "secondary", icon: PeopleOutlineIcon,
                 menuItems: [
-                    { name: 'item1', title: 'Sub Menu Item 1', color: "secondary" },
-                    { name: 'item2', title: 'Sub Menu Item 2', color: "secondary" },
-                    { name: 'item3', title: 'Sub Menu Item 3', color: "secondary" },
+                    { name: 'haj', title: 'HAJJ', color: "secondary" },
+                    { name: 'umrah', title: 'Umrah', color: "secondary" },
+                    { name: 'visa', title: 'Visa', color: "secondary" },
                 ]
             },
-            { name: 'item4', title: 'Menu Item', color: "secondary" },
-            { name: 'item5', title: 'Menu Item', color: "secondary" }
+            { name: 'packages', title: 'Packages', color: "secondary", icon: AirplanemodeActiveIcon},
+            { name: 'accounting', title: 'Accounting', color: "secondary", icon: AttachMoneyIcon }
         ]
     },
     toprightButtons: [
-        { name: 'image-viewer', title: '', icon: LibraryBooksOutlinedIcon, color: "inherit" },
+        {name: 'language', title: 'Language', icon: TranslateOutlinedIcon, color: "inherit", 
+        menuItems: [
+            { name: 'english', title: 'English', icon: LanguageOutlinedIcon, color: "secondary" },
+            { name: 'arabic', title: 'العربيه ', icon: BrightnessAutoOutlinedIcon, color: "secondary" },
+            { name: 'french', title: 'Française', icon: FreeBreakfastOutlinedIcon, color: "secondary" },
+        ]
+    },
         {
             name: 'help', title: 'Help', icon: HelpOutlineOutlinedIcon, color: "inherit",
             menuItems: [
                 { name: 'instructions', title: 'Instruction ', icon: PlaylistAddCheckOutlinedIcon, color: "secondary" },
                 { name: 'tutorial', title: 'Tutorial', icon: BookOutlinedIcon, color: "secondary" },
                 { name: 'feedback', title: 'Feedback', icon: ArrowForwardOutlinedIcon, color: "secondary" },
-            ]
-        },
-        {
-            name: 'apps', title: 'Optum Applications', icon: AppsOutlinedIcon, color: "inherit", width: '350px',
-            menuItems: [
-                { name: 'pv-match', title: 'PV Match ', icon: PlaylistAddCheckOutlinedIcon, color: "secondary" },
-                { name: 'controled-substance', title: 'Controled Substance', icon: BookOutlinedIcon, color: "secondary" },
-                { name: 'application-name', title: 'Application Name', icon: ArrowForwardOutlinedIcon, color: "secondary" },
             ]
         },
         {
@@ -61,11 +64,11 @@ const config: IHeaderConfig = {
 }
 
 
-const OptumHeader: React.FC = () => {
+const HajonsoftHeader: React.FC = () => {
 
     return (
         <AppHeader config={config} />
     )
 }
 
-export default OptumHeader;
+export default HajonsoftHeader;
