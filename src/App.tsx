@@ -1,11 +1,22 @@
 import React from 'react';
 import './App.css';
-import AppHeader from './feature/appHeader/AppHeader/AppHeader';
+import OptumHeader from './feature/OptumHeader/OptumHeader';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './feature/Home/Home';
+import { Paper } from '@material-ui/core';
+
 
 function App() {
   return (
     <div className="App">
-      <AppHeader />
+      <Router>
+        <OptumHeader />
+        <Paper elevation={10} style={{ margin: '80px auto', height: '80vh', width: '90%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Route path="/:id">
+            <Home />
+          </Route>
+        </Paper>
+      </Router>
     </div>
   );
 }
