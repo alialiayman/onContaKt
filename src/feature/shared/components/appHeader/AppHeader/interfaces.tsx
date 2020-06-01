@@ -4,7 +4,7 @@ export interface IMenuItem {
     title: string;
     width?: string;
     icon?: any;
-    color: "primary" | "secondary" | "default";
+    color: "primary" | "secondary" | "inherit";
     menuItems?: IMenuItem[]
 }
 

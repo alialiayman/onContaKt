@@ -168,15 +168,15 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
               </Grid>
             </Grid>
 
-            <Grid item justify="flex-end">
+            <Grid item>
               {config.toprightButtons.map(b =>
                 (
-                  <React.Fragment>
+                  <React.Fragment key={`k${b.name}`}>
                     <IconButton color="inherit" aria-label={`top button ${b.title}`} key={b.name} onClick={(e) => handleButtonClick(e, b)}>
-                      <b.icon color={b.color} />
+                      <b.icon color={b.color || "inherit"} />
                     </IconButton>
                     {b.menuItems &&
-                      <Popper
+                      <Popper key={`popper${b.name}`}
                         open={state.buttons.some((p: { name: string, open: boolean }) => b.menuItems && p.name === b.name && p.open)}
                         anchorEl={() => {
                           const btnState: any = state.buttons.find((btn: IButtonState) => btn.name === b.name);
@@ -203,7 +203,7 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
                                   <List component="nav" >
                                     <React.Fragment>
                                       {b.menuItems && b.menuItems.map(mi => (
-                                        <ListItem
+                                        <ListItem key={`${b.name}${mi.name}`}
                                           button
                                           className={classes.buttonItem}
                                           onClick={(e) => handleButtonItemClick(e, mi, b)}
@@ -249,7 +249,7 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
             className={classes.rootList}
           >
             {config.sideMenu.items && config.sideMenu.items.map(it => (
-              <React.Fragment>
+              <React.Fragment key={it.name}>
                 <ListItem
                   button
                   className={classes.menuItem + ' ' + (state.sidebar.selectedItem === it.name ? classes.menuItemSelected : '')}
@@ -267,7 +267,7 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
                 <Collapse in={it.menuItems && state.sidebar.selectedItem === it.name} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     {it.menuItems?.map(mi => (
-                      <ListItem
+                      <ListItem key={mi.name}
                         button
                         className={classes.nested + ' ' + classes.submenuItem + ' ' + (state.sidebar.selectedSubItem === mi.name ? classes.submenuItemSelected : '')}
                         selected={state.sidebar.selectedSubItem === mi.name}

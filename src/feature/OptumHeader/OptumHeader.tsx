@@ -33,9 +33,9 @@ const config: IHeaderConfig = {
         ]
     },
     toprightButtons: [
-        { name: 'image-viewer', title: '', icon: LibraryBooksOutlinedIcon, color: "default" },
+        { name: 'image-viewer', title: '', icon: LibraryBooksOutlinedIcon, color: "inherit" },
         {
-            name: 'help', title: 'Help', icon: HelpOutlineOutlinedIcon, color: "default",
+            name: 'help', title: 'Help', icon: HelpOutlineOutlinedIcon, color: "inherit",
             menuItems: [
                 { name: 'instructions', title: 'Instruction ', icon: PlaylistAddCheckOutlinedIcon, color: "secondary" },
                 { name: 'tutorial', title: 'Tutorial', icon: BookOutlinedIcon, color: "secondary" },
@@ -43,7 +43,7 @@ const config: IHeaderConfig = {
             ]
         },
         {
-            name: 'apps', title: 'Optum Applications', icon: AppsOutlinedIcon, color: "default", width: '350px',
+            name: 'apps', title: 'Optum Applications', icon: AppsOutlinedIcon, color: "inherit", width: '350px',
             menuItems: [
                 { name: 'pv-match', title: 'PV Match ', icon: PlaylistAddCheckOutlinedIcon, color: "secondary" },
                 { name: 'controled-substance', title: 'Controled Substance', icon: BookOutlinedIcon, color: "secondary" },
@@ -51,7 +51,7 @@ const config: IHeaderConfig = {
             ]
         },
         {
-            name: 'account', title: 'James Johnson', icon: AccountCircleOutlinedIcon, color: "default",
+            name: 'account', title: 'James Johnson', icon: AccountCircleOutlinedIcon, color: "inherit",
             menuItems: [
                 { name: 'manage-account', title: 'Manage Account', icon: SettingsOutlinedIcon, color: "secondary" },
                 { name: 'sign-out', title: 'Sign out', icon: ArrowForwardOutlinedIcon, color: "secondary" },

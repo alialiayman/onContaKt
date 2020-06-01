@@ -1,10 +1,10 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import { Typography, Grid } from '@material-ui/core';
 
 
 const Home: React.FC = () => {
-    let location = useLocation();
+    let param = useParams();
     return (
         <React.Fragment>
             <Grid container direction="column">
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
                 </Grid>
                 <Grid item>
                     <Typography component="p" variant="h3" color="textSecondary" >
-                        {location}
+                        {JSON.stringify(param)}
                     </Typography>
                 </Grid>
             </Grid>
