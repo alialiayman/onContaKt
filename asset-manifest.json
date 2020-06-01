@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/onsoft-header/static/css/main.5f361e03.chunk.css",
+    "main.js": "/onsoft-header/static/js/main.3eaa88ef.chunk.js",
+    "main.js.map": "/onsoft-header/static/js/main.3eaa88ef.chunk.js.map",
+    "runtime-main.js": "/onsoft-header/static/js/runtime-main.edfe0f25.js",
+    "runtime-main.js.map": "/onsoft-header/static/js/runtime-main.edfe0f25.js.map",
+    "static/js/2.d4464127.chunk.js": "/onsoft-header/static/js/2.d4464127.chunk.js",
+    "static/js/2.d4464127.chunk.js.map": "/onsoft-header/static/js/2.d4464127.chunk.js.map",
+    "index.html": "/onsoft-header/index.html",
+    "precache-manifest.73af2c340db6f833e55882cdbf98c1a3.js": "/onsoft-header/precache-manifest.73af2c340db6f833e55882cdbf98c1a3.js",
+    "service-worker.js": "/onsoft-header/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/onsoft-header/static/css/main.5f361e03.chunk.css.map",
+    "static/media/logo-dark.png": "/onsoft-header/static/media/logo-dark.30f6b11a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.edfe0f25.js",
+    "static/js/2.d4464127.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.3eaa88ef.chunk.js"
+  ]
+}
