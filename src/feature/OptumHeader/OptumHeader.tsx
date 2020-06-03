@@ -7,8 +7,8 @@ import PlaylistAddCheckOutlinedIcon from '@material-ui/icons/PlaylistAddCheckOut
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import BookOutlinedIcon from '@material-ui/icons/BookOutlined';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import AppHeader from '../shared/components/appHeader/AppHeader/AppHeader';
-import { IHeaderConfig } from '../shared/components/appHeader/AppHeader/interfaces';
+import AppHeader from '../shared/components/AppHeader/AppHeader';
+import { IHeaderConfig } from '../shared/components/interfaces';
 
 import logo from './optum-logo-105x30.png';
 

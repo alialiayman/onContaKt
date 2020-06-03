@@ -12,8 +12,8 @@ import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined';
 import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import TranslateOutlinedIcon from '@material-ui/icons/TranslateOutlined';
-import AppHeader from '../shared/components/appHeader/AppHeader/AppHeader';
-import { IHeaderConfig } from '../shared/components/appHeader/AppHeader/interfaces';
+import AppHeader from '../shared/components/AppHeader/AppHeader';
+import { IHeaderConfig } from '../shared/components/interfaces';
 
 import logo from './logo-dark.png';
 

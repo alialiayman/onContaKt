@@ -3,7 +3,7 @@ import { AppBar, Toolbar, IconButton, Typography, Grid, Drawer, Theme, Collapse,
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/styles';
-import { IHeaderConfig, IMenuItem, IButtonState } from './interfaces'
+import { IHeaderConfig, IMenuItem, IButtonState } from '../interfaces'
 import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
