@@ -20,6 +20,7 @@
     "react-dom": "16.11.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.2.0",
+    "storybook": "^5.3.19",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -29,7 +30,9 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "clean": "gh-pages clean"
+    "clean": "gh-pages clean",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,5 +48,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/preset-create-react-app": "^3.0.0",
+    "@storybook/react": "^5.3.19"
   }
 }

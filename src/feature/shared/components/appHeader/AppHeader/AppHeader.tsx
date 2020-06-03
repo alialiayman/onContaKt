@@ -7,15 +7,18 @@ import { IHeaderConfig, IMenuItem, IButtonState } from './interfaces'
 import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
-    color: '#636363',
-    height: '54px',
+    color: theme.palette.common.white,
+    height: '48px',
     zIndex: theme.zIndex.drawer + 1,
-    borderBottom: '3px solid',
+    borderBottom: '2px solid',
     borderImageSlice: 1,
-    borderImageSource: 'linear-gradient(90deg, #C3373f 0%, #E6A30B 100%)',
+    // This override should go to the theme somehow, either as an override to appBar or as gradient in the theme itself.
+    borderImageSource: `linear-gradient(90deg, #C3373F 0%, #E6A30B 100%)`,
+  },
+  toolBar:{
+    marginTop: '0',
   },
   drawer: {
     width: drawerWidth,
@@ -37,12 +40,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
   },
   menuItem: {
-    color: '#636363',
+    fontSize: '0.875rem',
     paddingLeft: '16px',
-    '&:hover': {
-      backgroundColor: '#f5f5f5',
-      color: '#222222',
-    },
   },
   menuItemSelected: {
     borderLeft: '2px solid #C3373f',
@@ -50,23 +49,23 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   buttonItem: {
     '&:hover': {
-      backgroundColor: '#f5f5f5',
       color: '#222222',
     },
   },
   submenuItem: {
-    color: '#636363',
+    color: theme.palette.grey[700],
     textAlign: 'left',
     '&root': {
       border: '1px solid silver',
     },
     '&:hover': {
-      backgroundColor: '#f5f5f5',
+      backgroundColor: theme.palette.grey[100],
       color: '#222222',
     },
   },
   submenuItemSelected: {
     color: '#222222',
+    background: theme.palette.common.white,
   },
   root: {
     height: 180,
@@ -87,7 +86,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 const AppHeader = ({ config }: { config: IHeaderConfig }) => {
-
   const classes = useStyles();
   let history = useHistory();
   const [state, setState] = useState({ drawerOpen: false, sidebar: { selectedItem: '', selectedSubItem: '', anchorElement: null }, buttons: [] });
@@ -157,23 +155,22 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
   return (
     <React.Fragment>
       <AppBar position="fixed" color="inherit" elevation={config.elevation || 0} className={classes.appBar}>
-        <Toolbar >
+        <Toolbar className={classes.toolBar} variant="dense">
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Grid container justify="flex-start" alignItems="center" >
-                <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
+                <IconButton edge="start"color="default" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
                   <MenuIcon />
                 </IconButton>
-                <img src={config.logo} alt="logo" style={{height: '30px'}}/>
+                <img src={config.logo} alt="logo" style={{maxHeight: '30px'}}/>
               </Grid>
             </Grid>
-
             <Grid item>
               {config.toprightButtons.map(b =>
                 (
                   <React.Fragment key={`k${b.name}`}>
-                    <IconButton color="inherit" aria-label={`top button ${b.title}`} key={b.name} onClick={(e) => handleButtonClick(e, b)}>
-                      <b.icon color={b.color || "inherit"} />
+                    <IconButton  aria-label={`top button ${b.title}`} key={b.name} onClick={(e) => handleButtonClick(e, b)}>
+                      <b.icon  />
                     </IconButton>
                     {b.menuItems &&
                       <Popper key={`popper${b.name}`}
@@ -195,12 +192,12 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
                             style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
                           >
                             <ClickAwayListener onClickAway={(e) => handleButtonMenuClose(e, b)}>
-                              <Card elevation={1}>
+                              <Card elevation={1} >
                                 <CardHeader title={b.title} style={{ textAlign: 'left', fontWeight: 'bold', fontSize: '16px' }} >
                                 </CardHeader>
                                 <Divider />
-                                <CardContent>
-                                  <List component="nav" >
+                                <CardContent style={{ padding: '0px'}} >
+                                  <List component="nav">
                                     <React.Fragment>
                                       {b.menuItems && b.menuItems.map(mi => (
                                         <ListItem key={`${b.name}${mi.name}`}
@@ -210,7 +207,7 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
                                         >
                                           <ListItemIcon>
                                             {mi.icon ?
-                                              <mi.icon color={mi.color} /> : <ArrowForwardOutlinedIcon color="secondary" />}
+                                              <mi.icon /> : <ArrowForwardOutlinedIcon color="secondary" />}
                                           </ListItemIcon>
                                           <ListItemText primary={mi.title} />
                                         </ListItem>
@@ -240,7 +237,7 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
         }}
       >
         <div className={classes.drawerContainer}>
-          <Typography variant="h5" style={{ marginLeft: '16px' }}>
+          <Typography variant="h5" style={{ marginLeft: '16px' , fontSize: '1.125rem'}}>
             {config.sideMenu.title}
           </Typography>
 
@@ -258,7 +255,7 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
                 >
                   {it.icon &&
                     <ListItemIcon >
-                      <it.icon color={it.color} />
+                      <it.icon  />
                     </ListItemIcon>
                   }
                   <ListItemText primary={it.title} />
@@ -276,7 +273,7 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
                         {mi.icon &&
                           <ListItemIcon>
                             <ListItemIcon>
-                              <mi.icon color={mi.color} />
+                              <mi.icon />
                             </ListItemIcon>
                           </ListItemIcon>}
                         <ListItemText primary={mi.title} style={{ textAlign: 'left' }} />
@@ -292,5 +289,6 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
     </React.Fragment>
   )
 }
+
 
 export default AppHeader;
