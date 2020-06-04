@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: theme.spacing(1),
   },
 }));
+
 const AppHeader = ({ config }: { config: IHeaderConfig }) => {
   const classes = useStyles();
   let history = useHistory();
@@ -159,9 +160,9 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Grid container justify="flex-start" alignItems="center" >
-                <IconButton edge="start"color="default" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
+               {config.user && config.user.isLoggedIn && <IconButton edge="start"color="default" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
                   <MenuIcon />
-                </IconButton>
+                </IconButton>}
                 <img src={config.logo} alt="logo" style={{maxHeight: '30px'}}/>
               </Grid>
             </Grid>
@@ -230,8 +231,8 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
           </Grid>
         </Toolbar>
       </AppBar>
-
-      <Drawer anchor="left" open={state.drawerOpen} className={classes.drawer} variant="persistent"
+      
+    { config.user && config.user.isLoggedIn &&  <Drawer anchor="left" open={state.drawerOpen} className={classes.drawer} variant="persistent"
         classes={{
           paper: classes.drawerPaper,
         }}
@@ -286,6 +287,7 @@ const AppHeader = ({ config }: { config: IHeaderConfig }) => {
           </List>
         </div>
       </Drawer>
+    }
     </React.Fragment>
   )
 }

@@ -18,33 +18,38 @@ import { IHeaderConfig } from '../shared/components/interfaces';
 import logo from './logo-dark.png';
 
 
-
 const config: IHeaderConfig = {
     logo,
     elevation: 0,
+    user: {
+        isLoggedIn: true,
+    },
     sideMenu: {
         title: 'HajOnSoft',
         items: [
             {
-                name: 'customers', title: 'Customers', icon: PeopleOutlineIcon,
+                name: 'dashboard', title: 'Dashboard', icon: HelpOutlineOutlinedIcon,
                 menuItems: [
-                    { name: 'haj', title: 'HAJJ' },
-                    { name: 'umrah', title: 'Umrah' },
-                    { name: 'visa', title: 'Visa' },
+                    { name: 'item1', title: 'Ticketing' , icon: HelpOutlineOutlinedIcon},
+                    { name: 'item2', title: 'Rooming' , icon: HelpOutlineOutlinedIcon},
+                    { name: 'item3', title: 'Exports' , icon: HelpOutlineOutlinedIcon},
                 ]
             },
-            { name: 'packages', title: 'Packages', icon: AirplanemodeActiveIcon},
-            { name: 'accounting', title: 'Accounting', icon: AttachMoneyIcon }
+            {
+                name: 'item4', title: 'Customers', icon: HelpOutlineOutlinedIcon,
+                menuItems: [
+                    { name: 'item2', title: 'Prospects', icon: HelpOutlineOutlinedIcon },
+                    { name: 'item1', title: 'Confirmed' , icon: HelpOutlineOutlinedIcon},
+                    { name: 'item3', title: 'Archived' , icon: HelpOutlineOutlinedIcon},
+                ]
+            },
+            { name: 'item5', title: 'Sub Agents' , icon: HelpOutlineOutlinedIcon},
+            { name: 'item5', title: 'Ticket Agents' , icon: HelpOutlineOutlinedIcon},
+            { name: 'item5', title: 'Accounting', icon: HelpOutlineOutlinedIcon }
         ]
     },
     toprightButtons: [
-        {name: 'language', title: 'Language', icon: TranslateOutlinedIcon, 
-        menuItems: [
-            { name: 'english', title: 'English', icon: LanguageOutlinedIcon },
-            { name: 'arabic', title: 'العربيه ', icon: BrightnessAutoOutlinedIcon },
-            { name: 'french', title: 'Française', icon: FreeBreakfastOutlinedIcon },
-        ]
-    },
+        { name: 'image-viewer', title: '', icon: PeopleOutlineIcon },
         {
             name: 'help', title: 'Help', icon: HelpOutlineOutlinedIcon,
             menuItems: [
@@ -54,7 +59,15 @@ const config: IHeaderConfig = {
             ]
         },
         {
-            name: 'account', title: 'James Johnson', icon: AccountCircleOutlinedIcon,
+            name: 'apps', title: 'Optum Applications', icon: FreeBreakfastOutlinedIcon, width: '350px',
+            menuItems: [
+                { name: 'pv-match', title: 'PV Match ', icon: PlaylistAddCheckOutlinedIcon },
+                { name: 'controled-substance', title: 'Controled Substance', icon: BookOutlinedIcon },
+                { name: 'application-name', title: 'Application Name', icon: ArrowForwardOutlinedIcon },
+            ]
+        },
+        {
+            name: 'account', title: 'Ayman Ali', icon: AccountCircleOutlinedIcon,
             menuItems: [
                 { name: 'manage-account', title: 'Manage Account', icon: SettingsOutlinedIcon },
                 { name: 'sign-out', title: 'Sign out', icon: ArrowForwardOutlinedIcon },
@@ -62,7 +75,6 @@ const config: IHeaderConfig = {
         },
     ],
 }
-
 
 const HajonsoftHeader: React.FC = () => {
 

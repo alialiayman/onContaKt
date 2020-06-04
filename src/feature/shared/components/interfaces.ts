@@ -1,5 +1,8 @@
 export interface IHeaderConfig {
     logo: string;
+    user?:{
+        isLoggedIn: boolean;
+    }
     elevation?: number;
     sideMenu: {
         title: string;

@@ -15,19 +15,31 @@ import logo from './optum-logo-105x30.png';
 const config: IHeaderConfig = {
     logo,
     elevation: 0,
+    user: {
+        isLoggedIn: true,
+    },
     sideMenu: {
-        title: 'IRIS Plus',
+        title: 'HajOnSoft',
         items: [
             {
-                name: 'accordion-item', title: 'Accordion Item',
+                name: 'dashboard', title: 'Dashboard', icon: HelpOutlineOutlinedIcon,
                 menuItems: [
-                    { name: 'item1', title: 'Sub Menu Item 1' },
-                    { name: 'item2', title: 'Sub Menu Item 2' },
-                    { name: 'item3', title: 'Sub Menu Item 3' },
+                    { name: 'item1', title: 'Ticketing' , icon: HelpOutlineOutlinedIcon},
+                    { name: 'item2', title: 'Rooming' , icon: HelpOutlineOutlinedIcon},
+                    { name: 'item3', title: 'Exports' , icon: HelpOutlineOutlinedIcon},
                 ]
             },
-            { name: 'item4', title: 'Menu Item' },
-            { name: 'item5', title: 'Menu Item' }
+            {
+                name: 'item4', title: 'Customers', icon: HelpOutlineOutlinedIcon,
+                menuItems: [
+                    { name: 'item2', title: 'Prospects', icon: HelpOutlineOutlinedIcon },
+                    { name: 'item1', title: 'Confirmed' , icon: HelpOutlineOutlinedIcon},
+                    { name: 'item3', title: 'Archived' , icon: HelpOutlineOutlinedIcon},
+                ]
+            },
+            { name: 'item5', title: 'Sub Agents' , icon: HelpOutlineOutlinedIcon},
+            { name: 'item5', title: 'Ticket Agents' , icon: HelpOutlineOutlinedIcon},
+            { name: 'item5', title: 'Accounting', icon: HelpOutlineOutlinedIcon }
         ]
     },
     toprightButtons: [
@@ -44,12 +56,12 @@ const config: IHeaderConfig = {
             name: 'apps', title: 'Optum Applications', icon: AppsOutlinedIcon, width: '350px',
             menuItems: [
                 { name: 'pv-match', title: 'PV Match ', icon: PlaylistAddCheckOutlinedIcon },
-                { name: 'controled-substance', title: 'Controled Substance', icon: BookOutlinedIcon},
+                { name: 'controled-substance', title: 'Controled Substance', icon: BookOutlinedIcon },
                 { name: 'application-name', title: 'Application Name', icon: ArrowForwardOutlinedIcon },
             ]
         },
         {
-            name: 'account', title: 'James Johnson', icon: AccountCircleOutlinedIcon,
+            name: 'account', title: 'Ayman Ali', icon: AccountCircleOutlinedIcon,
             menuItems: [
                 { name: 'manage-account', title: 'Manage Account', icon: SettingsOutlinedIcon },
                 { name: 'sign-out', title: 'Sign out', icon: ArrowForwardOutlinedIcon },
