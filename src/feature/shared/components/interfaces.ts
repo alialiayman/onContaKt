@@ -8,18 +8,19 @@ export interface IHeaderConfig {
         title: string;
         items: IMenuItem[]
     };
-    toprightButtons: IMenuItem[];
+    buttons: IMenuItem[];
+    bookmarks?: IMenuItem[];
 }
 
 export interface IMenuItem {
-    name: string,
+    name?: string,
     title: string;
     width?: string;
     icon?: any;
     menuItems?: IMenuItem[]
 }
 export interface IButtonState {
-    name: string;
+    key: string;
     open: boolean;
     anchorElement: string;
 }

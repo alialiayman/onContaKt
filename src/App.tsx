@@ -14,7 +14,7 @@ function App() {
       <ThemeProvider theme={defaultTheme}>
         <Router>
           <HajonsoftHeader />
-            <Route exact path="/:id">
+            <Route path="/:id">
               <Home />
             </Route>
         </Router>

@@ -1,18 +1,24 @@
-import React from 'react';
-import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
-import FreeBreakfastOutlinedIcon from '@material-ui/icons/FreeBreakfastOutlined';
-import BrightnessAutoOutlinedIcon from '@material-ui/icons/BrightnessAutoOutlined';
-import PlaylistAddCheckOutlinedIcon from '@material-ui/icons/PlaylistAddCheckOutlined';
+import React, { useState } from 'react';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
-import BookOutlinedIcon from '@material-ui/icons/BookOutlined';
-import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined';
-import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import TranslateOutlinedIcon from '@material-ui/icons/TranslateOutlined';
 import AppHeader from '../shared/components/AppHeader/AppHeader';
+import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
+import HotelOutlinedIcon from '@material-ui/icons/HotelOutlined';
+import ImportExportOutlinedIcon from '@material-ui/icons/ImportExportOutlined';
+import EmojiPeopleOutlinedIcon from '@material-ui/icons/EmojiPeopleOutlined';
+import NaturePeopleOutlinedIcon from '@material-ui/icons/NaturePeopleOutlined';
+import PeopleIcon from '@material-ui/icons/People';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import AssistantOutlinedIcon from '@material-ui/icons/AssistantOutlined';
+import LoyaltyOutlinedIcon from '@material-ui/icons/LoyaltyOutlined';
+import AccountTreeOutlinedIcon from '@material-ui/icons/AccountTreeOutlined';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import ArtTrackOutlinedIcon from '@material-ui/icons/ArtTrackOutlined';
+import AttachMoneyOutlinedIcon from '@material-ui/icons/AttachMoneyOutlined';
+import CloudDownloadOutlinedIcon from '@material-ui/icons/CloudDownloadOutlined';
+import ContactPhoneOutlinedIcon from '@material-ui/icons/ContactPhoneOutlined';
 import { IHeaderConfig } from '../shared/components/interfaces';
 
 import logo from './logo-dark.png';
@@ -20,66 +26,66 @@ import logo from './logo-dark.png';
 
 const config: IHeaderConfig = {
     logo,
-    elevation: 0,
+    elevation: 2,
     user: {
-        isLoggedIn: true,
+        isLoggedIn: false,
     },
     sideMenu: {
         title: 'HajOnSoft',
         items: [
             {
-                name: 'dashboard', title: 'Dashboard', icon: HelpOutlineOutlinedIcon,
+                 title: 'Dashboard', icon: DashboardOutlinedIcon,
                 menuItems: [
-                    { name: 'item1', title: 'Ticketing' , icon: HelpOutlineOutlinedIcon},
-                    { name: 'item2', title: 'Rooming' , icon: HelpOutlineOutlinedIcon},
-                    { name: 'item3', title: 'Exports' , icon: HelpOutlineOutlinedIcon},
+                    {  title: 'Ticketing' , icon: LabelOutlinedIcon},
+                    {  title: 'Rooming' , icon: HotelOutlinedIcon},
+                    {  title: 'Other' , icon: ImportExportOutlinedIcon},
                 ]
             },
             {
-                name: 'item4', title: 'Customers', icon: HelpOutlineOutlinedIcon,
+                title: 'Customers', icon: EmojiPeopleOutlinedIcon,
                 menuItems: [
-                    { name: 'item2', title: 'Prospects', icon: HelpOutlineOutlinedIcon },
-                    { name: 'item1', title: 'Confirmed' , icon: HelpOutlineOutlinedIcon},
-                    { name: 'item3', title: 'Archived' , icon: HelpOutlineOutlinedIcon},
+                    {  title: 'Prospects', icon: NaturePeopleOutlinedIcon },
+                    {  title: 'Confirmed' , icon: PeopleIcon},
+                    {  title: 'Archived' , icon: SupervisedUserCircleIcon},
                 ]
             },
-            { name: 'item5', title: 'Sub Agents' , icon: HelpOutlineOutlinedIcon},
-            { name: 'item5', title: 'Ticket Agents' , icon: HelpOutlineOutlinedIcon},
-            { name: 'item5', title: 'Accounting', icon: HelpOutlineOutlinedIcon }
+            {  title: 'Sub Agents' , icon: AssistantOutlinedIcon},
+            {  title: 'Ticket Agents' , icon: LoyaltyOutlinedIcon},
+            {  title: 'Accounting', icon: AccountTreeOutlinedIcon }
         ]
     },
-    toprightButtons: [
-        { name: 'image-viewer', title: '', icon: PeopleOutlineIcon },
+    buttons: [
         {
-            name: 'help', title: 'Help', icon: HelpOutlineOutlinedIcon,
+           title: 'Ayman Ali', icon: AccountCircleIcon,
             menuItems: [
-                { name: 'instructions', title: 'Instruction ', icon: PlaylistAddCheckOutlinedIcon },
-                { name: 'tutorial', title: 'Tutorial', icon: BookOutlinedIcon },
-                { name: 'feedback', title: 'Feedback', icon: ArrowForwardOutlinedIcon },
+                { title: 'Manage Account', icon: SettingsOutlinedIcon },
+                { title: 'Sign out', icon: ArrowForwardOutlinedIcon },
             ]
         },
-        {
-            name: 'apps', title: 'Optum Applications', icon: FreeBreakfastOutlinedIcon, width: '350px',
-            menuItems: [
-                { name: 'pv-match', title: 'PV Match ', icon: PlaylistAddCheckOutlinedIcon },
-                { name: 'controled-substance', title: 'Controled Substance', icon: BookOutlinedIcon },
-                { name: 'application-name', title: 'Application Name', icon: ArrowForwardOutlinedIcon },
-            ]
-        },
-        {
-            name: 'account', title: 'Ayman Ali', icon: AccountCircleOutlinedIcon,
-            menuItems: [
-                { name: 'manage-account', title: 'Manage Account', icon: SettingsOutlinedIcon },
-                { name: 'sign-out', title: 'Sign out', icon: ArrowForwardOutlinedIcon },
-            ]
-        },
+    ],
+    bookmarks: [
+        {title: 'Home', icon: HomeOutlinedIcon },
+        {title: 'Features', icon: ArtTrackOutlinedIcon },
+        {title: 'Pricing', icon: AttachMoneyOutlinedIcon },
+        {title: 'Download', icon: CloudDownloadOutlinedIcon },
+        {title: 'Contact', icon: ContactPhoneOutlinedIcon },
+
     ],
 }
 
 const HajonsoftHeader: React.FC = () => {
 
+    const [headerConfig, setHeaderConfig] = useState(config);
+    const handleOnSignIn = ()=> {
+        setHeaderConfig(prev=> ({...prev,user: {isLoggedIn: true}}));
+        setTimeout(() => {
+        setHeaderConfig(prev=> ({...prev,user: {isLoggedIn: false}}));
+            
+        }, 2000);
+    }
+
     return (
-        <AppHeader config={config} />
+        <AppHeader config={headerConfig} onSignIn={handleOnSignIn}/>
     )
 }
 
