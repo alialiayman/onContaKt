@@ -5,6 +5,7 @@ import HajonsoftHeader from './feature/HajonsoftHeader/HajonsoftHeader';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './feature/Home/Home';
 import {  ThemeProvider, createMuiTheme } from '@material-ui/core';
+import SignIn from './feature/SignIn/SignIn';
 
 const defaultTheme = createMuiTheme();
 
@@ -14,7 +15,10 @@ function App() {
       <ThemeProvider theme={defaultTheme}>
         <Router>
           <HajonsoftHeader />
-            <Route path="/:id">
+            <Route exact path="/sign-in">
+              <SignIn />
+            </Route>
+            <Route exact path="/:id">
               <Home />
             </Route>
         </Router>

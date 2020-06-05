@@ -85,7 +85,7 @@ const HajonsoftHeader: React.FC = () => {
     }
 
     return (
-        <AppHeader config={headerConfig} onSignIn={handleOnSignIn}/>
+        <AppHeader config={headerConfig} onSignIn={handleOnSignIn} />
     )
 }
 

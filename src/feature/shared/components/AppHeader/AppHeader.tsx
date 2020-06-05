@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const AppHeader = ({ config , onSignIn}: { config: IHeaderConfig, onSignIn: any }) => {
+const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any }) => {
   const classes = useStyles();
   let history = useHistory();
   const [state, setState] = useState({ drawerOpen: false, sidebar: { selectedItem: '', selectedSubItem: '', anchorElement: null }, buttons: [] });
@@ -149,184 +149,177 @@ const AppHeader = ({ config , onSignIn}: { config: IHeaderConfig, onSignIn: any 
   };
 
 
-  const handleBookmarkClick = (e: any,bm: IMenuItem)=> {
+  const handleBookmarkClick = (e: any, bm: IMenuItem) => {
     ((bm.name || bm.title) && history.push((bm.name || bm.title).replace(/ /g, '-').toLowerCase()));
   }
-  const handleSignInClick = (e: any,bm: IMenuItem)=> {
+  const handleSignInClick = (e: any, bm: IMenuItem) => {
     ((bm.name || bm.title) && history.push((bm.name || bm.title).replace(/ /g, '-').toLowerCase()));
     onSignIn();
   }
 
 
   return (
-    <React.Fragment>
-      <HideOnScroll>
-        <div >
-          <AppBar position="fixed" color="inherit" elevation={config.elevation || 0} className={classes.appBar}>
-            <Toolbar className={classes.toolBar} variant="dense">
-              <Grid container justify="space-between" alignItems="center">
-                <Grid item>
-                  <Grid container justify="flex-start" alignItems="center" >
-                    {config.user && config.user.isLoggedIn && <IconButton edge="start" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
-                      <MenuIcon />
-                    </IconButton>}
-                    <img src={config.logo} alt="logo" style={{ maxHeight: '30px' }} />
-                  </Grid>
+    <HideOnScroll>
+      <div>
+        <AppBar position="fixed" color="inherit" elevation={config.elevation || 0} className={classes.appBar}>
+          <Toolbar className={classes.toolBar} variant="dense">
+            <Grid container justify="space-between" alignItems="center">
+              <Grid item>
+                <Grid container justify="flex-start" alignItems="center" >
+                  {config.user && config.user.isLoggedIn && <IconButton edge="start" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
+                    <MenuIcon />
+                  </IconButton>}
+                  <img src={config.logo} alt="logo" style={{ maxHeight: '30px' }} />
                 </Grid>
-                {config.user && config.user.isLoggedIn &&
-                  <Grid item>
-                    {config.buttons.map(b =>
-                      (
-                        <React.Fragment key={`topButton/${b.name || b.title}`}>
-                          <IconButton aria-label={`top button ${b.title}`} key={b.name} onClick={(e) => handleButtonClick(e, b)}>
-                            <b.icon />
-                          </IconButton>
-                          {b.menuItems &&
-                            <Popper key={`popper${b.name || b.title}`}
-                              open={state.buttons.some((p: IButtonState) => b.menuItems && p.key === (b.name || b.title) && p.open)}
-                              anchorEl={() => {
-                                const btnState: any = state.buttons.find((btn: IButtonState) => btn.key === b.name || b.title);
-                                if (btnState && btnState.anchorElement) {
-                                  return btnState.anchorElement!;
-                                }
-                                return null;
-                              }}
-                              role={undefined}
-                              transition
-                              disablePortal
-                              style={{ width: b.width || '280px', marginLeft: '-200px' }}>
-                              {({ TransitionProps, placement }) => (
-                                <Grow
-                                  {...TransitionProps}
-                                  style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                                >
-                                  <ClickAwayListener onClickAway={(e) => handleButtonMenuClose(e, b)}>
-                                    <Card elevation={1} >
-                                      <CardHeader title={b.title} style={{ textAlign: 'left', fontWeight: 'bold', fontSize: '16px' }} >
-                                      </CardHeader>
-                                      <Divider />
-                                      <CardContent style={{ padding: '0px' }} >
-                                        <List component="nav">
-                                          <React.Fragment>
-                                            {b.menuItems && b.menuItems.map(mi => (
-                                              <ListItem key={`topButton/menuItm/${b.name || b.title}${mi.name || mi.title}`}
-                                                button
-                                                className={classes.buttonItem}
-                                                onClick={(e) => handleButtonItemClick(e, mi, b)}
-                                              >
-                                                <ListItemIcon>
-                                                  {mi.icon ?
-                                                    <mi.icon /> : <ArrowForwardOutlinedIcon color="secondary" />}
-                                                </ListItemIcon>
-                                                <ListItemText primary={mi.title} />
-                                              </ListItem>
-                                            ))}
-                                          </React.Fragment>
-                                        </List>
-                                      </CardContent>
-
-                                    </Card>
-                                  </ClickAwayListener>
-                                </Grow>
-                              )}
-                            </Popper>
-                          }
-                        </React.Fragment>
-
-                      )
-                    )}
-                  </Grid>
-                }
-                {(!config.user || !config.user.isLoggedIn) &&
-                  <Grid container style={{ width: '90%' }} justify="space-around" alignItems="center" wrap="nowrap">
-
-                    {config.bookmarks && config.bookmarks.map(bm =>
-                      <React.Fragment>
-                        <Grid item style={{ width: '100%' }} >
-                          <Button
-                            startIcon={<bm.icon />}
-                            size="large" fullWidth style={{ textTransform: 'none' }} onClick={(e)=> handleBookmarkClick(e,bm)}>
-                            {bm.title}
-                          </Button>
-                        </Grid>
-
-                      </React.Fragment>
-                    )}
-                    <Grid container justify="flex-end">
-                      <Button variant="contained"
-                        color="primary"
-                        endIcon={<LockIcon />}
-                        size="small" onClick={(e)=> handleSignInClick(e,{name: 'sign-in', title: 'Sign In'})}>Sign In</Button>>
-                    </Grid>
-                  </Grid>
-                }
               </Grid>
-            </Toolbar>
-          </AppBar>
-          <div style={{ display: 'flex' }}>
-            {config.user && config.user.isLoggedIn && <Drawer anchor="left" open={state.drawerOpen} variant="persistent" >
-              <div className={classes.drawerContainer} >
-                <Typography variant="h5" style={{ marginLeft: '16px', fontSize: '1.125rem' }}>
-                  {config.sideMenu.title}
-                </Typography>
+              {config.user && config.user.isLoggedIn &&
+                <Grid item>
+                  {config.buttons.map(b =>
+                    (
+                      <React.Fragment key={`topButton/${b.name || b.title}`}>
+                        <IconButton aria-label={`top button ${b.title}`} key={b.name} onClick={(e) => handleButtonClick(e, b)}>
+                          <b.icon />
+                        </IconButton>
+                        {b.menuItems &&
+                          <Popper key={`popper${b.name || b.title}`}
+                            open={state.buttons.some((p: IButtonState) => b.menuItems && p.key === (b.name || b.title) && p.open)}
+                            anchorEl={() => {
+                              const btnState: any = state.buttons.find((btn: IButtonState) => btn.key === b.name || b.title);
+                              if (btnState && btnState.anchorElement) {
+                                return btnState.anchorElement!;
+                              }
+                              return null;
+                            }}
+                            role={undefined}
+                            transition
+                            disablePortal
+                            style={{ width: b.width || '280px', marginLeft: '-200px' }}>
+                            {({ TransitionProps, placement }) => (
+                              <Grow
+                                {...TransitionProps}
+                                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                              >
+                                <ClickAwayListener onClickAway={(e) => handleButtonMenuClose(e, b)}>
+                                  <Card elevation={1} >
+                                    <CardHeader title={b.title} style={{ textAlign: 'left', fontWeight: 'bold', fontSize: '16px' }} >
+                                    </CardHeader>
+                                    <Divider />
+                                    <CardContent style={{ padding: '0px' }} >
+                                      <List component="nav">
+                                        <React.Fragment>
+                                          {b.menuItems && b.menuItems.map(mi => (
+                                            <ListItem key={`topButton/menuItm/${b.name || b.title}${mi.name || mi.title}`}
+                                              button
+                                              className={classes.buttonItem}
+                                              onClick={(e) => handleButtonItemClick(e, mi, b)}
+                                            >
+                                              <ListItemIcon>
+                                                {mi.icon ?
+                                                  <mi.icon /> : <ArrowForwardOutlinedIcon color="secondary" />}
+                                              </ListItemIcon>
+                                              <ListItemText primary={mi.title} />
+                                            </ListItem>
+                                          ))}
+                                        </React.Fragment>
+                                      </List>
+                                    </CardContent>
 
-                <List
-                  component="nav"
-                  className={classes.rootList}
-                >
-                  {config.sideMenu.items && config.sideMenu.items.map(it => (
-                    <React.Fragment key={`${it.name || it.title}`}>
-                      <ListItem
-                        button
-                        className={classes.menuItem + ' ' + (state.sidebar.selectedItem === (it.name || it.title) ? classes.menuItemSelected : '')}
-                        onClick={(e) => handleSidebarItemClick(e, it.name || it.title)}
-                        selected={state.sidebar.selectedItem === (it.name || it.title)}
-                      >
-                        {it.icon &&
-                          <ListItemIcon >
-                            <it.icon />
-                          </ListItemIcon>
+                                  </Card>
+                                </ClickAwayListener>
+                              </Grow>
+                            )}
+                          </Popper>
                         }
-                        <ListItemText primary={it.title} />
+                      </React.Fragment>
 
-                      </ListItem>
-                      <Collapse in={it.menuItems && state.sidebar.selectedItem === (it.name || it.title)} unmountOnExit>
-                        <List component="div" disablePadding>
-                          {it.menuItems?.map(mi => (
-                            <ListItem key={mi.name || mi.title}
-                              button
-                              className={classes.nested + ' ' + classes.submenuItem + ' ' + (state.sidebar.selectedSubItem === (mi.name || mi.title) ? classes.submenuItemSelected : '')}
-                              selected={state.sidebar.selectedSubItem === (mi.name || mi.title)}
-                              onClick={(e) => handleSidebarSubItemClick(e, mi.name || mi.title)}
-                            >
-                              {mi.icon &&
-                                <ListItemIcon>
-                                  <ListItemIcon>
-                                    <mi.icon />
-                                  </ListItemIcon>
-                                </ListItemIcon>}
-                              <ListItemText primary={mi.title} style={{ textAlign: 'left' }} />
-                            </ListItem>
-                          ))}
-                        </List>
-                      </Collapse>
+                    )
+                  )}
+                </Grid>
+              }
+              {(!config.user || !config.user.isLoggedIn) &&
+                <Grid container style={{ width: '90%' }} justify="space-around" alignItems="center" wrap="nowrap">
+
+                  {config.bookmarks && config.bookmarks.map(bm =>
+                    <React.Fragment>
+                      <Grid item style={{ width: '100%' }} >
+                        <Button
+                          startIcon={<bm.icon />}
+                          size="large" fullWidth style={{ textTransform: 'none' }} onClick={(e) => handleBookmarkClick(e, bm)}>
+                          {bm.title}
+                        </Button>
+                      </Grid>
+
                     </React.Fragment>
-                  ))}
-                </List>
-              </div>
-            </Drawer>
-            }
+                  )}
+                  <Grid container justify="flex-end">
+                    <Button variant="contained"
+                      color="primary"
+                      endIcon={<LockIcon />}
+                      size="small" onClick={(e) => handleSignInClick(e, { name: 'sign-in', title: 'Sign In' })}>Sign In</Button>>
+                    </Grid>
+                </Grid>
+              }
+            </Grid>
+          </Toolbar>
+        </AppBar>
+
+        {config.user && config.user.isLoggedIn && <Drawer anchor="left" open={state.drawerOpen} variant="persistent" >
+          <div className={classes.drawerContainer} >
+            <Typography variant="h5" style={{ marginLeft: '16px', fontSize: '1.125rem' }}>
+              {config.sideMenu.title}
+            </Typography>
+
+            <List
+              component="nav"
+              className={classes.rootList}
+            >
+
+              {config.sideMenu.items && config.sideMenu.items.map(it => (
+                <React.Fragment key={`${it.name || it.title}`}>
+                  <ListItem
+                    button
+                    className={classes.menuItem + ' ' + (state.sidebar.selectedItem === (it.name || it.title) ? classes.menuItemSelected : '')}
+                    onClick={(e) => handleSidebarItemClick(e, it.name || it.title)}
+                    selected={state.sidebar.selectedItem === (it.name || it.title)}
+                  >
+                    {it.icon &&
+                      <ListItemIcon >
+                        <it.icon />
+                      </ListItemIcon>
+                    }
+                    <ListItemText primary={it.title} />
+
+                  </ListItem>
+                  <Collapse in={it.menuItems && state.sidebar.selectedItem === (it.name || it.title)} unmountOnExit>
+                    <List component="div" disablePadding>
+                      {it.menuItems?.map(mi => (
+                        <ListItem key={mi.name || mi.title}
+                          button
+                          className={classes.nested + ' ' + classes.submenuItem + ' ' + (state.sidebar.selectedSubItem === (mi.name || mi.title) ? classes.submenuItemSelected : '')}
+                          selected={state.sidebar.selectedSubItem === (mi.name || mi.title)}
+                          onClick={(e) => handleSidebarSubItemClick(e, mi.name || mi.title)}
+                        >
+                          {mi.icon &&
+                            <ListItemIcon>
+                              <ListItemIcon>
+                                <mi.icon />
+                              </ListItemIcon>
+                            </ListItemIcon>}
+                          <ListItemText primary={mi.title} style={{ textAlign: 'left' }} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Collapse>
+                </React.Fragment>
+              ))}
+            </List>
           </div>
-
-
-
-        </div>
-
-      </HideOnScroll>
-    </React.Fragment>
+        </Drawer>
+        }
+      </div>
+    </HideOnScroll>
   )
 }
-
 const HideOnScroll = (props: any) => {
   const scrolledUp = useScrollTrigger();
   const { children } = props;
