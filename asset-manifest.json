@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/onsoft-header/static/css/main.5f361e03.chunk.css",
-    "main.js": "/onsoft-header/static/js/main.fcc47f62.chunk.js",
-    "main.js.map": "/onsoft-header/static/js/main.fcc47f62.chunk.js.map",
+    "main.js": "/onsoft-header/static/js/main.72ba5fd6.chunk.js",
+    "main.js.map": "/onsoft-header/static/js/main.72ba5fd6.chunk.js.map",
     "runtime-main.js": "/onsoft-header/static/js/runtime-main.edfe0f25.js",
     "runtime-main.js.map": "/onsoft-header/static/js/runtime-main.edfe0f25.js.map",
-    "static/js/2.bd564750.chunk.js": "/onsoft-header/static/js/2.bd564750.chunk.js",
-    "static/js/2.bd564750.chunk.js.map": "/onsoft-header/static/js/2.bd564750.chunk.js.map",
+    "static/js/2.c98ec270.chunk.js": "/onsoft-header/static/js/2.c98ec270.chunk.js",
+    "static/js/2.c98ec270.chunk.js.map": "/onsoft-header/static/js/2.c98ec270.chunk.js.map",
     "index.html": "/onsoft-header/index.html",
-    "precache-manifest.d90cf872182bbaafa867220955df6c3f.js": "/onsoft-header/precache-manifest.d90cf872182bbaafa867220955df6c3f.js",
+    "precache-manifest.296f5103ed241da3d410fc43934c0f84.js": "/onsoft-header/precache-manifest.296f5103ed241da3d410fc43934c0f84.js",
     "service-worker.js": "/onsoft-header/service-worker.js",
     "static/css/main.5f361e03.chunk.css.map": "/onsoft-header/static/css/main.5f361e03.chunk.css.map",
     "static/media/logo-dark.png": "/onsoft-header/static/media/logo-dark.30f6b11a.png"
   },
   "entrypoints": [
     "static/js/runtime-main.edfe0f25.js",
-    "static/js/2.bd564750.chunk.js",
+    "static/js/2.c98ec270.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.fcc47f62.chunk.js"
+    "static/js/main.72ba5fd6.chunk.js"
   ]
 }
