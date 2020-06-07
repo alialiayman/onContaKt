@@ -18,7 +18,7 @@ function App() {
             <Route exact path="/sign-in">
               <SignIn />
             </Route>
-            <Route exact path="/:id">
+            <Route exact path="/">
               <Home />
             </Route>
         </Router>
