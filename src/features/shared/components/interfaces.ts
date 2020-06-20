@@ -13,7 +13,8 @@ export interface IHeaderConfig {
 }
 
 export interface IMenuItem {
-    name?: string,
+    name?: string;
+    route?: string;
     title: string;
     width?: string;
     icon?: any;

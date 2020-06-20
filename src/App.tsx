@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import HajonsoftHeader from './feature/HajonsoftHeader/HajonsoftHeader';
+import HajonsoftHeader from './features/HajonsoftHeader/HajonsoftHeader';
 // import OptumHeader from './feature/OptumHeader/OptumHeader';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Home from './feature/Home/Home';
+import Home from './features/Home/Home';
 import {  ThemeProvider, createMuiTheme } from '@material-ui/core';
-import SignIn from './feature/SignIn/SignIn';
+import SignIn from './features/SignIn/SignIn';
 
 const defaultTheme = createMuiTheme();
 

@@ -34,29 +34,29 @@ const config: IHeaderConfig = {
         title: 'HajOnSoft',
         items: [
             {
-                 title: 'Dashboard', icon: DashboardOutlinedIcon,
+                title: 'Dashboard', icon: DashboardOutlinedIcon,
                 menuItems: [
-                    {  title: 'Ticketing' , icon: LabelOutlinedIcon},
-                    {  title: 'Rooming' , icon: HotelOutlinedIcon},
-                    {  title: 'Other' , icon: ImportExportOutlinedIcon},
+                    { title: 'Ticketing', icon: LabelOutlinedIcon },
+                    { title: 'Rooming', icon: HotelOutlinedIcon },
+                    { title: 'Other', icon: ImportExportOutlinedIcon },
                 ]
             },
             {
                 title: 'Customers', icon: EmojiPeopleOutlinedIcon,
                 menuItems: [
-                    {  title: 'Prospects', icon: NaturePeopleOutlinedIcon },
-                    {  title: 'Confirmed' , icon: PeopleIcon},
-                    {  title: 'Archived' , icon: SupervisedUserCircleIcon},
+                    { title: 'Prospects', icon: NaturePeopleOutlinedIcon },
+                    { title: 'Confirmed', icon: PeopleIcon },
+                    { title: 'Archived', icon: SupervisedUserCircleIcon },
                 ]
             },
-            {  title: 'Sub Agents' , icon: AssistantOutlinedIcon},
-            {  title: 'Ticket Agents' , icon: LoyaltyOutlinedIcon},
-            {  title: 'Accounting', icon: AccountTreeOutlinedIcon }
+            { title: 'Sub Agents', icon: AssistantOutlinedIcon },
+            { title: 'Ticket Agents', icon: LoyaltyOutlinedIcon },
+            { title: 'Accounting', icon: AccountTreeOutlinedIcon }
         ]
     },
     buttons: [
         {
-           title: 'Ayman Ali', icon: AccountCircleIcon,
+            title: 'Ayman Ali', icon: AccountCircleIcon,
             menuItems: [
                 { title: 'Manage Account', icon: SettingsOutlinedIcon },
                 { title: 'Sign out', icon: ArrowForwardOutlinedIcon },
@@ -64,24 +64,23 @@ const config: IHeaderConfig = {
         },
     ],
     bookmarks: [
-        {title: 'Home', icon: HomeOutlinedIcon },
-        {title: 'Features', icon: ArtTrackOutlinedIcon },
-        {title: 'Pricing', icon: AttachMoneyOutlinedIcon },
-        {title: 'Download', icon: CloudDownloadOutlinedIcon },
-        {title: 'Contact', icon: ContactPhoneOutlinedIcon },
-
+        { route: '/', title: 'Home', icon: HomeOutlinedIcon },
+        { route: '/#features', title: 'Features', icon: ArtTrackOutlinedIcon },
+        { route: '/#pricing', title: 'Pricing', icon: AttachMoneyOutlinedIcon },
+        { route: '/#download', title: 'Download', icon: CloudDownloadOutlinedIcon },
+        { route: '/#contact', title: 'Contact', icon: ContactPhoneOutlinedIcon },
     ],
 }
 
 const HajonsoftHeader: React.FC = () => {
 
     const [headerConfig, setHeaderConfig] = useState(config);
-    const handleOnSignIn = ()=> {
-        setHeaderConfig(prev=> ({...prev,user: {isLoggedIn: true}}));
-        setTimeout(() => {
-        setHeaderConfig(prev=> ({...prev,user: {isLoggedIn: false}}));
-            
-        }, 2000);
+    const handleOnSignIn = () => {
+        setHeaderConfig(prev => ({ ...prev, user: { isLoggedIn: true } }));
+        // setTimeout(() => {
+        // setHeaderConfig(prev=> ({...prev,user: {isLoggedIn: false}}));
+
+        // }, 2000);
     }
 
     return (

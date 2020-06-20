@@ -10,7 +10,7 @@ import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import BookOutlinedIcon from '@material-ui/icons/BookOutlined';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
-import AppHeader from '../feature/shared/components/AppHeader/AppHeader';
+import AppHeader from '../features/shared/components/AppHeader/AppHeader';
 import logo from './optum-logo-105x30.png'
 
 export default {

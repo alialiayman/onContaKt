@@ -4,6 +4,7 @@ import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/styles';
 import LockIcon from '@material-ui/icons/Lock';
+import { HashLink as Link } from 'react-router-hash-link';
 
 import { IHeaderConfig, IMenuItem, IButtonState } from '../interfaces'
 import { useHistory } from "react-router-dom";
@@ -150,7 +151,7 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
 
 
   const handleBookmarkClick = (e: any, bm: IMenuItem) => {
-    ((bm.name || bm.title) && history.push((bm.name || bm.title).replace(/ /g, '-').toLowerCase()));
+    ((bm.name || bm.title) && history.push((bm.route || bm.name || bm.title).replace(/ /g, '-').toLowerCase()));
   }
   const handleSignInClick = (e: any, bm: IMenuItem) => {
     ((bm.name || bm.title) && history.push((bm.name || bm.title).replace(/ /g, '-').toLowerCase()));
@@ -242,13 +243,8 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
                   {config.bookmarks && config.bookmarks.map(bm =>
                     <React.Fragment>
                       <Grid item style={{ width: '100%' }} >
-                        <Button
-                          startIcon={<bm.icon />}
-                          size="large" fullWidth style={{ textTransform: 'none' }} onClick={(e) => handleBookmarkClick(e, bm)}>
-                          {bm.title}
-                        </Button>
+                        <Link smooth to={bm.route || ''}><bm.icon /> {bm.title}</Link>
                       </Grid>
-
                     </React.Fragment>
                   )}
                   <Grid container justify="flex-end">
