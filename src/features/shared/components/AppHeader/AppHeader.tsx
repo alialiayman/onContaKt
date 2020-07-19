@@ -8,6 +8,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 
 import { IHeaderConfig, IMenuItem, IButtonState } from '../interfaces'
 import { useHistory } from "react-router-dom";
+import useUserState from '../../../SignIn/redux/useUserState';
 
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
@@ -82,6 +83,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any }) => {
   const classes = useStyles();
+  const { isLoggedIn } = useUserState();
+
   let history = useHistory();
   const [state, setState] = useState({ drawerOpen: false, sidebar: { selectedItem: '', selectedSubItem: '', anchorElement: null }, buttons: [] });
 
@@ -140,9 +143,9 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
     history.push(sidebarSubItemName.replace(/ /g, '-').toLowerCase());
     setState((p) => {
       if (p.sidebar.selectedSubItem === sidebarSubItemName) {
-        return { ...p, sidebar: { ...p.sidebar, selectedSubItem: '' } };
+        return { ...p, sidebar: { ...p.sidebar, selectedSubItem: '' } , drawerOpen: false};
       } else {
-        return { ...p, sidebar: { ...p.sidebar, selectedSubItem: sidebarSubItemName } };
+        return { ...p, sidebar: { ...p.sidebar, selectedSubItem: sidebarSubItemName }, drawerOpen: false };
 
       }
     }
@@ -167,13 +170,13 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
             <Grid container justify="space-between" alignItems="center">
               <Grid item>
                 <Grid container justify="flex-start" alignItems="center" >
-                  {config.user && config.user.isLoggedIn && <IconButton edge="start" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
+                  {isLoggedIn && <IconButton edge="start" aria-label="menu" onClick={() => setState(p => ({ ...state, drawerOpen: !p.drawerOpen }))}>
                     <MenuIcon />
                   </IconButton>}
                   <img src={config.logo} alt="logo" style={{ maxHeight: '30px' }} />
                 </Grid>
               </Grid>
-              {config.user && config.user.isLoggedIn &&
+              {isLoggedIn &&
                 <Grid item>
                   {config.buttons.map(b =>
                     (
@@ -237,7 +240,7 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
                   )}
                 </Grid>
               }
-              {(!config.user || !config.user.isLoggedIn) &&
+              {!isLoggedIn &&
                 <Grid container style={{ width: '90%' }} justify="space-around" alignItems="center" wrap="nowrap">
 
                   {config.bookmarks && config.bookmarks.map(bm =>
@@ -259,7 +262,8 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
           </Toolbar>
         </AppBar>
 
-        {config.user && config.user.isLoggedIn && <Drawer anchor="left" open={state.drawerOpen} variant="persistent" >
+        {isLoggedIn && 
+        <Drawer anchor="left" open={state.drawerOpen} variant="persistent" >
           <div className={classes.drawerContainer} >
             <Typography variant="h5" style={{ marginLeft: '16px', fontSize: '1.125rem' }}>
               {config.sideMenu.title}

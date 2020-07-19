@@ -22,6 +22,7 @@ import ContactPhoneOutlinedIcon from '@material-ui/icons/ContactPhoneOutlined';
 import { IHeaderConfig } from '../shared/components/interfaces';
 
 import logo from './logo-dark.png';
+import useUserState from '../SignIn/redux/useUserState';
 
 
 const config: IHeaderConfig = {
@@ -76,11 +77,7 @@ const HajonsoftHeader: React.FC = () => {
 
     const [headerConfig, setHeaderConfig] = useState(config);
     const handleOnSignIn = () => {
-        setHeaderConfig(prev => ({ ...prev, user: { isLoggedIn: true } }));
-        // setTimeout(() => {
-        // setHeaderConfig(prev=> ({...prev,user: {isLoggedIn: false}}));
 
-        // }, 2000);
     }
 
     return (

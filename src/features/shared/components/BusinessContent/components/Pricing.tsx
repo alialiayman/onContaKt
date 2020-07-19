@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Pricing = ()=> {
+const Pricing = ({model}: any)=> {
     return (
         <div>
             Welcome to pricing
