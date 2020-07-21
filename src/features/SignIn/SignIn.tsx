@@ -1,25 +1,24 @@
-import React, { useState } from 'react';
-import { Typography, Grid, Paper, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Container, Card, CardContent, TextField, Link, FormControlLabel, Checkbox } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import { Formik, ErrorMessage, Field, Form } from 'formik';
-import useUserState from './redux/useUserState';
+import { Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import useUserState from './redux/useUserState';
 
 const SignIn: React.FC = () => {
     const history = useHistory();
-    const { login, isLoggedIn , isError} = useUserState();
+    const { login, isLoggedIn, isError } = useUserState();
     let webapiKey = '';
     let projectId = '';
-    
+
     const firebaseInfo = localStorage.getItem('firebase');
-    if (firebaseInfo){
+    if (firebaseInfo) {
         const firebaseInfoObject = JSON.parse(firebaseInfo);
         webapiKey = firebaseInfoObject.webapiKey;
         projectId = firebaseInfoObject.projectId;
     }
 
-    if (isLoggedIn){
+    if (isLoggedIn) {
         history.push('/home');
     }
 
@@ -32,14 +31,14 @@ const SignIn: React.FC = () => {
 
                 </Grid>
                 <Grid item xs={6} style={{ display: ' flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Formik 
-                        initialValues={{ webapiKey, username: '', password: '', projectId }}
+                    <Formik
+                        initialValues={{ webapiKey, email: 'ayali@hotmail.com', password: 'paris123', projectId }}
                         onSubmit={(values, actions) => {
-                            localStorage.setItem('firebase', JSON.stringify({webapiKey: values.webapiKey, projectId: values.projectId}));
+                            localStorage.setItem('firebase', JSON.stringify({ webapiKey: values.webapiKey, projectId: values.projectId }));
                             login(values);
                         }}>
                         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) =>
-                            <Paper elevation={3} style={{backgroundColor: 'hsl(240,100%,99%)', color: 'hsl(240,100%,20%)',  width: '80%'}}>
+                            <Paper elevation={3} style={{ backgroundColor: 'hsl(240,100%,99%)', color: 'hsl(240,100%,20%)', width: '80%' }}>
                                 <Form >
                                     <Typography variant="h4" style={{ marginTop: '20px' }}>Login</Typography>
                                     <Typography variant="subtitle1">Please login to your account</Typography>
@@ -142,7 +141,7 @@ const SignIn: React.FC = () => {
                 </Grid>
             </Grid>
 
-            <Snackbar open={isError} autoHideDuration={6000} message="Firebase: login failed, please check and try again!"/>
+            <Snackbar open={isError} autoHideDuration={6000} message="Firebase: login failed, please check and try again!" />
 
         </React.Fragment >
     )

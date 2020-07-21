@@ -13,6 +13,7 @@ import HotelOutlinedIcon from '@material-ui/icons/HotelOutlined';
 import ImportExportOutlinedIcon from '@material-ui/icons/ImportExportOutlined';
 import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 import LoyaltyOutlinedIcon from '@material-ui/icons/LoyaltyOutlined';
+import MergeTypeOutlinedIcon from '@material-ui/icons/MergeTypeOutlined';
 import NaturePeopleOutlinedIcon from '@material-ui/icons/NaturePeopleOutlined';
 import PeopleIcon from '@material-ui/icons/People';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
@@ -27,11 +28,8 @@ import logo from './logo-dark.png';
 const config: IHeaderConfig = {
     logo,
     elevation: 2,
-    user: {
-        isLoggedIn: false,
-    },
     sideMenu: {
-        title: 'HajOnSoft',
+        title: 'Relate',
         items: [
             {
                 title: 'Dashboard', icon: DashboardOutlinedIcon,
@@ -47,6 +45,7 @@ const config: IHeaderConfig = {
                     { title: 'Prospects', icon: NaturePeopleOutlinedIcon },
                     { title: 'Confirmed', icon: PeopleIcon },
                     { title: 'Archived', icon: SupervisedUserCircleIcon },
+                    { title: 'Import', icon: MergeTypeOutlinedIcon },
                 ]
             },
             { title: 'Sub Agents', icon: AssistantOutlinedIcon },
@@ -72,11 +71,11 @@ const config: IHeaderConfig = {
     ],
 }
 
-const HajonsoftHeader: React.FC = () => {
+const RelatetHeader: React.FC = () => {
 
     return (
         <AppHeader config={config} />
     )
 }
 
-export default HajonsoftHeader;
+export default RelatetHeader;

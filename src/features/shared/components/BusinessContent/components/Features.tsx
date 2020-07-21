@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Paper, Slide, Typography, Zoom } from '@material-ui/core';
+import { Grid, Paper, Slide, Typography, Zoom } from '@material-ui/core';
 import React from 'react';
 
 const config = {
@@ -12,25 +12,19 @@ const config = {
     ]
 }
 
-const useStyles = makeStyles((theme) => ({
-    subtitleText: {
-        color: theme.palette.primary.main,
-    }
-}));
 
-const Features = ({model}: any) => {
-    const classes = useStyles();
+const Features = ({ model }: any) => {
     return (
         <React.Fragment >
-            <div style={{width: '100%'}}>
+            <div style={{ width: '100%' }}>
                 <Slide direction="right" in={true} timeout={500}>
                     <Typography variant="h3">{config.title}</Typography>
                 </Slide>
                 <Zoom in={true} timeout={1000}>
 
-    <Typography variant="h4" >{config.subtitle}</Typography>
+                    <Typography variant="h4" >{config.subtitle}</Typography>
                 </Zoom>
-                <Grid container justify="space-between" spacing={1} style={{ padding: '20px'}}>
+                <Grid container justify="space-between" spacing={1} style={{ padding: '20px' }}>
                     {config.items.map(i =>
                         <Grid item xs={3} >
                             <Slide direction="left" in={true} timeout={500}>

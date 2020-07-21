@@ -1,13 +1,4 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Typography, Grid, Paper, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import AutoRotatingCarousel from '../common/Carousel/AutoRotatingCarousel';
-import Slide from '../common/Carousel/Slide';
-import Features from '../shared/components/BusinessContent/components/Features';
-import MainFeature from '../shared/components/BusinessContent/components/MainFeature';
-import Pricing from '../shared/components/BusinessContent/components/Pricing';
-import { HashLink as Link } from 'react-router-hash-link';
+import React from 'react';
 import BusinessContent from '../shared/components/BusinessContent/BusinessContent';
 //const Slide = require('./Slide').default;
 import homeModel from './homeModel';
@@ -15,9 +6,6 @@ import homeModel from './homeModel';
 
 
 const Home = () => {
-    let param = useParams();
-    const [state, setState] = useState({ open: true });
-
 
     return (
         <React.Fragment >
@@ -58,7 +46,7 @@ const Home = () => {
                     />
                 </AutoRotatingCarousel>
             </div> */}
-            <pre>{JSON.stringify(homeModel.sections,null,2)}</pre>
+            {/* <pre>{JSON.stringify(homeModel.sections,null,2)}</pre> */}
             {homeModel.sections && homeModel.sections.map(m => <BusinessContent model={m} />)}
 
         </React.Fragment >

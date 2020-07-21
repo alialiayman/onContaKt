@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { AppBar, Toolbar, IconButton, Typography, Grid, Drawer, Theme, Collapse, List, ListItem, ListItemText, ListItemIcon, Popper, Grow, ClickAwayListener, Divider, Card, CardContent, CardHeader, useScrollTrigger, Slide, Button } from '@material-ui/core';
+import { AppBar, Button, Card, CardContent, CardHeader, ClickAwayListener, Collapse, Divider, Drawer, Grid, Grow, IconButton, List, ListItem, ListItemIcon, ListItemText, Popper, Slide, Theme, Toolbar, Typography, useScrollTrigger } from '@material-ui/core';
 import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
+import LockIcon from '@material-ui/icons/Lock';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/styles';
-import LockIcon from '@material-ui/icons/Lock';
-import { HashLink as Link } from 'react-router-hash-link';
-
-import { IHeaderConfig, IMenuItem, IButtonState } from '../interfaces'
+import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
 import useUserState from '../../../SignIn/redux/useUserState';
+import { IButtonState, IHeaderConfig, IMenuItem } from '../interfaces';
+
 
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any }) => {
+const AppHeader = ({ config }: { config: IHeaderConfig }) => {
   const classes = useStyles();
   const { isLoggedIn } = useUserState();
 
@@ -143,7 +143,7 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
     history.push(sidebarSubItemName.replace(/ /g, '-').toLowerCase());
     setState((p) => {
       if (p.sidebar.selectedSubItem === sidebarSubItemName) {
-        return { ...p, sidebar: { ...p.sidebar, selectedSubItem: '' } , drawerOpen: false};
+        return { ...p, sidebar: { ...p.sidebar, selectedSubItem: '' }, drawerOpen: false };
       } else {
         return { ...p, sidebar: { ...p.sidebar, selectedSubItem: sidebarSubItemName }, drawerOpen: false };
 
@@ -153,12 +153,12 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
   };
 
 
-  const handleBookmarkClick = (e: any, bm: IMenuItem) => {
-    ((bm.name || bm.title) && history.push((bm.route || bm.name || bm.title).replace(/ /g, '-').toLowerCase()));
-  }
+  // const handleBookmarkClick = (e: any, bm: IMenuItem) => {
+  //   ((bm.name || bm.title) && history.push((bm.route || bm.name || bm.title).replace(/ /g, '-').toLowerCase()));
+  // }
+  
   const handleSignInClick = (e: any, bm: IMenuItem) => {
     ((bm.name || bm.title) && history.push((bm.name || bm.title).replace(/ /g, '-').toLowerCase()));
-    onSignIn();
   }
 
 
@@ -254,7 +254,7 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
                     <Button variant="contained"
                       color="primary"
                       endIcon={<LockIcon />}
-                      size="small" onClick={(e) => handleSignInClick(e, { name: 'sign-in', title: 'Sign In' })}>Sign In</Button>>
+                      size="small" onClick={(e) => handleSignInClick(e, { name: 'sign-in', title: 'Sign In' })}>Sign In</Button>
                     </Grid>
                 </Grid>
               }
@@ -262,59 +262,59 @@ const AppHeader = ({ config, onSignIn }: { config: IHeaderConfig, onSignIn: any 
           </Toolbar>
         </AppBar>
 
-        {isLoggedIn && 
-        <Drawer anchor="left" open={state.drawerOpen} variant="persistent" >
-          <div className={classes.drawerContainer} >
-            <Typography variant="h5" style={{ marginLeft: '16px', fontSize: '1.125rem' }}>
-              {config.sideMenu.title}
-            </Typography>
+        {isLoggedIn &&
+          <Drawer anchor="left" open={state.drawerOpen} variant="persistent" >
+            <div className={classes.drawerContainer} >
+              <Typography variant="h5" style={{ marginLeft: '16px', fontSize: '1.125rem' }}>
+                {config.sideMenu.title}
+              </Typography>
 
-            <List
-              component="nav"
-              className={classes.rootList}
-            >
+              <List
+                component="nav"
+                className={classes.rootList}
+              >
 
-              {config.sideMenu.items && config.sideMenu.items.map(it => (
-                <React.Fragment key={`${it.name || it.title}`}>
-                  <ListItem
-                    button
-                    className={classes.menuItem + ' ' + (state.sidebar.selectedItem === (it.name || it.title) ? classes.menuItemSelected : '')}
-                    onClick={(e) => handleSidebarItemClick(e, it.name || it.title)}
-                    selected={state.sidebar.selectedItem === (it.name || it.title)}
-                  >
-                    {it.icon &&
-                      <ListItemIcon >
-                        <it.icon />
-                      </ListItemIcon>
-                    }
-                    <ListItemText primary={it.title} />
+                {config.sideMenu.items && config.sideMenu.items.map(it => (
+                  <React.Fragment key={`${it.name || it.title}`}>
+                    <ListItem
+                      button
+                      className={classes.menuItem + ' ' + (state.sidebar.selectedItem === (it.name || it.title) ? classes.menuItemSelected : '')}
+                      onClick={(e) => handleSidebarItemClick(e, it.name || it.title)}
+                      selected={state.sidebar.selectedItem === (it.name || it.title)}
+                    >
+                      {it.icon &&
+                        <ListItemIcon >
+                          <it.icon />
+                        </ListItemIcon>
+                      }
+                      <ListItemText primary={it.title} />
 
-                  </ListItem>
-                  <Collapse in={it.menuItems && state.sidebar.selectedItem === (it.name || it.title)} unmountOnExit>
-                    <List component="div" disablePadding>
-                      {it.menuItems?.map(mi => (
-                        <ListItem key={mi.name || mi.title}
-                          button
-                          className={classes.nested + ' ' + classes.submenuItem + ' ' + (state.sidebar.selectedSubItem === (mi.name || mi.title) ? classes.submenuItemSelected : '')}
-                          selected={state.sidebar.selectedSubItem === (mi.name || mi.title)}
-                          onClick={(e) => handleSidebarSubItemClick(e, mi.name || mi.title)}
-                        >
-                          {mi.icon &&
-                            <ListItemIcon>
+                    </ListItem>
+                    <Collapse in={it.menuItems && state.sidebar.selectedItem === (it.name || it.title)} unmountOnExit>
+                      <List component="div" disablePadding>
+                        {it.menuItems?.map(mi => (
+                          <ListItem key={mi.name || mi.title}
+                            button
+                            className={classes.nested + ' ' + classes.submenuItem + ' ' + (state.sidebar.selectedSubItem === (mi.name || mi.title) ? classes.submenuItemSelected : '')}
+                            selected={state.sidebar.selectedSubItem === (mi.name || mi.title)}
+                            onClick={(e) => handleSidebarSubItemClick(e, mi.name || mi.title)}
+                          >
+                            {mi.icon &&
                               <ListItemIcon>
-                                <mi.icon />
-                              </ListItemIcon>
-                            </ListItemIcon>}
-                          <ListItemText primary={mi.title} style={{ textAlign: 'left' }} />
-                        </ListItem>
-                      ))}
-                    </List>
-                  </Collapse>
-                </React.Fragment>
-              ))}
-            </List>
-          </div>
-        </Drawer>
+                                <ListItemIcon>
+                                  <mi.icon />
+                                </ListItemIcon>
+                              </ListItemIcon>}
+                            <ListItemText primary={mi.title} style={{ textAlign: 'left' }} />
+                          </ListItem>
+                        ))}
+                      </List>
+                    </Collapse>
+                  </React.Fragment>
+                ))}
+              </List>
+            </div>
+          </Drawer>
         }
       </div>
     </HideOnScroll>

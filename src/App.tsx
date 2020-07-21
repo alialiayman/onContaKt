@@ -1,46 +1,53 @@
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { applyMiddleware, compose, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import './App.css';
-import HajonsoftHeader from './features/HajonsoftHeader/HajonsoftHeader';
-// import OptumHeader from './feature/OptumHeader/OptumHeader';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ImportCustomers from './features/Customers/ImportCustomers';
+import ProspectCustomers from './features/Customers/ProspectCustomers';
+import RelatetHeader from './features/HajonsoftHeader/RelateHeader';
 import Home from './features/Home/Home';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core';
+import PrivateRoute from './features/SignIn/PrivateRoute';
+import PublicRoute from './features/SignIn/PublicRoute';
 import SignIn from './features/SignIn/SignIn';
-import createSagaMiddleware from 'redux-saga'
-import { createStore, applyMiddleware, compose } from 'redux'
-import { Provider } from 'react-redux'
-import sagas from './redux/saga';
 import reducer from './redux/reducer';
+import sagas from './redux/saga';
 
 const defaultTheme = createMuiTheme();
 
 
 const sagaMiddleware = createSagaMiddleware();
 const reduxDevtoolsCompose = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-const composeEnhancers = (reduxDevtoolsCompose && reduxDevtoolsCompose({trace: true})) || compose;
+const composeEnhancers = (reduxDevtoolsCompose && reduxDevtoolsCompose({ trace: true })) || compose;
 const store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(sagaMiddleware)));
-  
+
 sagaMiddleware.run(sagas);
 
 function App() {
+
   return (
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
         <Router>
           <Provider store={store}>
-            <HajonsoftHeader />
-            <Route exact path="/sign-in">
-              <SignIn />
-            </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
+            <RelatetHeader />
+
+            <div style={{ marginTop: '53px' }}>
+              <PublicRoute restricted exact path="/sign-in" component={SignIn} />
+              <PrivateRoute exact path="/confirmed" component={ProspectCustomers} />
+              <PrivateRoute exact path="/prospects" component={ProspectCustomers} />
+              <PrivateRoute exact path="/archived" component={ProspectCustomers} />
+              <PrivateRoute exact path="/import" component={ImportCustomers} />
+              <PrivateRoute exact path="/home" component={Home} />
+            </div>
           </Provider>
         </Router>
       </ThemeProvider>
-    </div>
+    </div >
   );
 }
 
