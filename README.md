@@ -1,1 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+###Contact management using React and Firebase
+
+This react project allows you to store up to 1GB on firebase and pay as you go after that
