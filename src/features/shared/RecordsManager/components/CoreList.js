@@ -12,11 +12,13 @@ import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import PermPhoneMsgOutlinedIcon from '@material-ui/icons/PermPhoneMsgOutlined';
 import Remove from '@material-ui/icons/Remove';
+import ReplayOutlinedIcon from '@material-ui/icons/ReplayOutlined';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
+import { Button } from '@material-ui/core';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import _ from 'lodash';
-import MaterialTable from 'material-table';
+import MaterialTable, { MTableToolbar } from 'material-table';
 import React, { forwardRef } from 'react';
 
 const tableIcons = {
@@ -39,6 +41,7 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
   MoreDetails: forwardRef((props, ref) => <DetailsIcon {...props} ref={ref} />),
   Chat: forwardRef((props, ref) => <PermPhoneMsgOutlinedIcon {...props} ref={ref} />),
+  Back: forwardRef((props, ref) => <ReplayOutlinedIcon {...props} ref={ref} />),
 
 };
 
@@ -49,7 +52,19 @@ const CoreList = ({ model, records, onAdd, onDelete, onUpdate, onModelChange }) 
 
   return (
     <React.Fragment>
-      <MaterialTable icons={tableIcons}
+      <MaterialTable
+        components={{
+          Toolbar: props => (
+            <div >
+              {model.actions && model.actions.some(a => a === "back") &&
+                <Button color="secondary" variant="outlined" onClick={() => onModelChange({ rowdata: '', source: 'back' })} startIcon={<ReplayOutlinedIcon></ReplayOutlinedIcon>}>Back</Button>
+              }
+
+              <MTableToolbar {...props} />
+            </div>
+          ),
+        }}
+        icons={tableIcons}
         title={model.pluralName}
         columns={sortedSummaryColumns}
         data={records}
@@ -68,7 +83,7 @@ const CoreList = ({ model, records, onAdd, onDelete, onUpdate, onModelChange }) 
             }
           },
           {
-            icon: () => <tableIcons.Chat color="action" />,
+            icon: () => (model.actions.includes('chat') && <tableIcons.Chat color="action" />),
             tooltip: 'chat ' + model.name,
             onClick: (event, rowData) => {
               onModelChange(rowData);
@@ -111,3 +126,4 @@ const CoreList = ({ model, records, onAdd, onDelete, onUpdate, onModelChange }) 
 }
 
 export default CoreList;
+

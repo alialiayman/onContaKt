@@ -1,18 +1,7 @@
+import { combineReducers } from 'redux';
+import recordsManagerReducer from "../features/shared/RecordsManager/redux/recordsManagerReducer";
+import loginReducer from '../features/SignIn/redux/reducer';
 
-const initialState = {
-    auth: { request: {}, response: {}, isError: false, isInProgress: false, isLoggedin: false }
-}
-function reducer(state = initialState, action: any) {
-    switch (action.type) {
-        case 'LOGIN':
-            return { ...state, auth: { ...state.auth, request: action.payload, isLoggedIn: false, isInProgress: true, isError: false } };
-        case 'LOGIN_SUCCESS':
-            return { ...state, auth: { ...state.auth, request: state.auth.request, response: action.payload, isLoggedIn: true, isInProgress: false } };
-        case 'LOGIN_ERROR':
-            return { ...state, auth: { ...state.auth, response: action.payload, isLoggedIn: false, isInProgress: false, isError: true } };
-        default:
-            return state;
-    }
-}
+const rootReducer = combineReducers({ auth: loginReducer, recordsManager: recordsManagerReducer });
 
-export default reducer;
+export default rootReducer;

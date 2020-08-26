@@ -1,19 +1,10 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { authService } from './services';
+import { fork } from 'redux-saga/effects';
+import loginSagaFlow from '../features/SignIn/redux/saga';
+import recordsmanagerSagaFlow from '../features/shared/RecordsManager/redux/saga';
 
 function* sagas() {
-    yield takeLatest('LOGIN', loginSaga);
-
-}
-
-function* loginSaga(action: any) {
-    try {
-        const result = yield call(authService.login, action.payload);
-        yield put({ type: 'LOGIN_SUCCESS', payload: result });
-
-    } catch (e) {
-        yield put({ type: 'LOGIN_ERROR', message: e.message });
-    }
+    yield fork(loginSagaFlow);
+    yield fork(recordsmanagerSagaFlow);
 
 }
 

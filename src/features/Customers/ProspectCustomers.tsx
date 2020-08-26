@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RecordsManager from '../shared/RecordsManager/RecordsManager';
 import chatModel from './chatModel';
 import customerModel from './customerModel';
+import { withRouter } from 'react-router-dom';
 
 
 const ProspectCustomers = () => {
@@ -11,10 +12,11 @@ const ProspectCustomers = () => {
     const dummy = () => { }
 
     const handleModelChange = ({ rowdata, source, index }: any) => {
-
         if (model.name === 'Customer' && source === 'actions' && index === 0) {
             const customerChatmodel = chatModel({ name: `Chat ${customerModel.name} ${rowdata.name}`, folder: `chat${rowdata.firebaseId}` });
             setModel(customerChatmodel);
+        } else if (source === 'back') {
+            setModel(customerModel);
         }
 
     }
@@ -27,4 +29,4 @@ const ProspectCustomers = () => {
     )
 }
 
-export default ProspectCustomers;
+export default withRouter(ProspectCustomers);

@@ -12,7 +12,7 @@ import Home from './features/Home/Home';
 import PrivateRoute from './features/SignIn/PrivateRoute';
 import PublicRoute from './features/SignIn/PublicRoute';
 import SignIn from './features/SignIn/SignIn';
-import reducer from './redux/reducer';
+import loginReducer from './redux/reducer';
 import sagas from './redux/saga';
 
 const defaultTheme = createMuiTheme();
@@ -22,7 +22,7 @@ const sagaMiddleware = createSagaMiddleware();
 const reduxDevtoolsCompose = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = (reduxDevtoolsCompose && reduxDevtoolsCompose({ trace: true })) || compose;
 const store = createStore(
-  reducer,
+  loginReducer,
   composeEnhancers(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(sagas);
@@ -38,8 +38,9 @@ function App() {
 
             <div style={{ marginTop: '53px' }}>
               <PublicRoute restricted exact path="/sign-in" component={SignIn} />
-              <PrivateRoute exact path="/confirmed" component={ProspectCustomers} />
+              <PrivateRoute exact path="/confirmed" component={()=> <ProspectCustomers/>} />
               <PrivateRoute exact path="/prospects" component={ProspectCustomers} />
+              <PrivateRoute exact path="/favorite" component={ProspectCustomers} />
               <PrivateRoute exact path="/archived" component={ProspectCustomers} />
               <PrivateRoute exact path="/import" component={ImportCustomers} />
               <PrivateRoute exact path="/home" component={Home} />

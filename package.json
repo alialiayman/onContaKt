@@ -1,6 +1,6 @@
 {
-  "homepage": "https://alialiayman.github.io/onsoft-header",
-  "name": "onsoft-header",
+  "homepage": "https://alialiayman.github.io/onContaKt/",
+  "name": "oncontakt",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -26,6 +26,7 @@
     "lodash": "^4.17.19",
     "material-auto-rotating-carousel": "^3.0.2",
     "material-table": "^1.66.0",
+    "moment": "^2.27.0",
     "pluralize": "^8.0.0",
     "react": "16.11.0",
     "react-beforeunload": "^2.2.1",

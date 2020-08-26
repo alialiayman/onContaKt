@@ -8,6 +8,7 @@ import CloudDownloadOutlinedIcon from '@material-ui/icons/CloudDownloadOutlined'
 import ContactPhoneOutlinedIcon from '@material-ui/icons/ContactPhoneOutlined';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import EmojiPeopleOutlinedIcon from '@material-ui/icons/EmojiPeopleOutlined';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import HotelOutlinedIcon from '@material-ui/icons/HotelOutlined';
 import ImportExportOutlinedIcon from '@material-ui/icons/ImportExportOutlined';
@@ -44,6 +45,7 @@ const config: IHeaderConfig = {
                 menuItems: [
                     { title: 'Prospects', icon: NaturePeopleOutlinedIcon },
                     { title: 'Confirmed', icon: PeopleIcon },
+                    { title: 'Favorite', icon: FavoriteBorderOutlinedIcon },
                     { title: 'Archived', icon: SupervisedUserCircleIcon },
                     { title: 'Import', icon: MergeTypeOutlinedIcon },
                 ]

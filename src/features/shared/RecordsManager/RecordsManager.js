@@ -1,13 +1,14 @@
 import _ from 'lodash';
 import pluralize from 'pluralize';
 import React, { useEffect, useState } from 'react';
+import { withRouter } from "react-router";
 import useUserState from '../../SignIn/redux/useUserState';
 import CoreForm from './components/CoreForm';
 import CoreList from './components/CoreList';
-import firebaseService from './redux/firebaseService';
+import useRecordManagerState from './redux/useRecordManagerState';
 
 
-const RecordsManager = ({ model, initialMode, onModelChange, onRecordAdded, onRecordDeleted, onRecordUpated }) => {
+const RecordsManager = ({ model, initialMode, onModelChange, onRecordAdded, onRecordDeleted, onRecordUpated, match }) => {
     const [state, setState] = useState({
         records: [],
         selectedRecord: {},
@@ -15,22 +16,17 @@ const RecordsManager = ({ model, initialMode, onModelChange, onRecordAdded, onRe
     });
     model = touchModel(model);
     const { projectId, user } = useUserState();
-    const svc = firebaseService();
+    const { load, data } = useRecordManagerState(model);
     const emptyRecord = establishEmptyRecord(model);
 
     useEffect(() => {
-        async function getRecords() {
-            if (!state.records || state.records.length === 0) {
-                const result = await svc.getRecords(user, projectId, model.folder);
-                if (result && result.data) {
-                    const objectKeys = Object.keys(result.data);
-                    let mappedRecords = objectKeys.map(k => { return { ...result.data[k], firebaseId: k } });
-                    setState({ ...state, records: mappedRecords });
-                }
-            }
+        if (!data || data.length === 0) {
+            model.projectId = projectId;
+            model.user = user;
+            load(model);
         }
-        getRecords();
-    }, [user, projectId, svc, state, model, emptyRecord]);
+
+    }, [model]);
 
     if (!model) {
         return null;
@@ -83,7 +79,7 @@ const RecordsManager = ({ model, initialMode, onModelChange, onRecordAdded, onRe
                     /> :
                     <CoreList
                         model={model}
-                        records={state.records}
+                        records={data}
                         onAdd={handleOnAdd}
                         onDelete={handleOnDelete}
                         onUpdate={handleOnUpdate}
@@ -177,5 +173,6 @@ function touchModel(model) {
     return model;
 }
 
+const withRouterRecordsManager = withRouter(RecordsManager);
 
-export { touchModel, RecordsManager as default };
+export { touchModel, withRouterRecordsManager as default };
