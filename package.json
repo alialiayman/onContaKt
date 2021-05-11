@@ -23,7 +23,7 @@
     "axios": "^0.19.2",
     "formik": "^2.1.5",
     "gh-pages": "^2.2.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "material-auto-rotating-carousel": "^3.0.2",
     "material-table": "^1.66.0",
     "moment": "^2.27.0",
